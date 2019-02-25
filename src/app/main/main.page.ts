@@ -58,6 +58,10 @@ export class MainPage implements AfterViewInit {
 
     this.profileload();
 
+    if (this.uid === undefined) {
+      this.router.navigateByUrl('login');
+    }
+
     this.zona = localStorage.getItem('ubication');
     this.nombre = localStorage.getItem('nombre');
 
@@ -80,13 +84,7 @@ export class MainPage implements AfterViewInit {
     });
 
   }
-
-  ionViewCanEnter() {
-    if (this.uid === undefined) {
-      this.router.navigateByUrl('login');
-    }
-  }
-
+  
   ngAfterViewInit() {
     setInterval(() => {
       this.trayectosload();
@@ -95,9 +93,6 @@ export class MainPage implements AfterViewInit {
     setTimeout(() => {
       this.rutas();
     }, 3000);
-  }
-  ionViewWillEnter() {
-    this.profileload();
   }
 
   async presentModal() {

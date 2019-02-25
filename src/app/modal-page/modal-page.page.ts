@@ -13,22 +13,22 @@ import { Router } from '@angular/router';
 export class ModalPagePage implements OnInit {
 
   links: any;
-  constructor(public modalcontroler: ModalController ,  private http: HttpClient
-    , private aut: AngularFireAuth, private router: Router ) {
+  constructor(public modalcontroler: ModalController, private http: HttpClient
+    , private aut: AngularFireAuth, private router: Router) {
     this.linksload();
-   }
+  }
 
   ngOnInit() {
   }
-  dismiss() {
+  dismiss() {
     this.modalcontroler.dismiss();
   }
 
   async signOut() {
-    localStorage.clear();
+
     const res = await this.aut.auth.signOut();
     console.log(res);
-   
+    localStorage.clear();
     this.router.navigateByUrl('/login');
     this.modalcontroler.dismiss();
   }
@@ -41,9 +41,9 @@ export class ModalPagePage implements OnInit {
       console.log(this.links);
     });
   }
-  gotopage( url: string) {
+  gotopage(url: string) {
     console.log(url);
-    window.open( url , '_system');
+    window.open(url, '_system');
 
   }
 

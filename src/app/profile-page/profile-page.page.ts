@@ -24,23 +24,19 @@ export class ProfilePagePage implements AfterViewInit {
 
   constructor(private http: HttpClient
     , private aut: AngularFireAuth, private router: Router, public active: ActivatedRoute) {
-
-    console.log('entro a profile');
     this.userprofile = true;
     this.uid = localStorage.getItem('uid');
 
-  }
-
-  ionViewCanEnter() {
     if (this.uid === undefined) {
       this.router.navigateByUrl('login');
     }
+
   }
 
   ngAfterViewInit() {
     setInterval(() => {
       this.profileload();
-    }, 3000)
+    }, 3000);
   }
 
   async profileload() {
@@ -55,16 +51,6 @@ export class ProfilePagePage implements AfterViewInit {
       this.userprofile = false;
       this.profiletrayectos = data2;
     });
-  }
-
-  gotomain() {
-    this.router.navigateByUrl('/');
-  }
-  gotoedit() {
-    this.router.navigateByUrl('/edituser');
-  }
-  gotocreate() {
-    this.router.navigateByUrl('/create');
   }
 
   gotowhatsapp(telf: string) {

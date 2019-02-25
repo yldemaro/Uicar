@@ -36,7 +36,6 @@ export class ModalTablonPage implements OnInit {
   }
 
   ngOnInit() {
-    this.nombre=localStorage.getItem('nombre');
     console.log(this.zona, this.nombre);
   }
   dismiss() {
