@@ -18,13 +18,12 @@
 
 <ion-content>
 
-    <div #map class="map" id="map" style="position: relative"></div>
-
-    <div text-center *ngIf="cargandoRutas===true">
+    <div text-center *ngIf="cargando===true">
         <ion-spinner name="bubbles"></ion-spinner>
-        <p>Cargando Rutas </p>
+        <p>Espere Cargando</p>
     </div>
 
+    <div #map class="map" id="map" style="position: relative"></div>
     <div padding>
         <h2 margin-bottom> Trayectos cerca tuyo </h2>
         <div text-center *ngIf="cargandoTrayecto===true">
@@ -38,7 +37,8 @@
                         {{ item.inicio }}
                     </ion-col>
                     <ion-col size="2">
-                        <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg"></ion-icon>
+                        <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg">
+                        </ion-icon>
                     </ion-col>
                     <ion-col size="5">
                         {{ item.destino }}
@@ -82,12 +82,6 @@
 
         <h2>Tablon</h2>
 
-        <div text-center *ngIf="cargandoTablon===true">
-            <ion-spinner name="bubbles"></ion-spinner>
-            <p>Cargando Tablon</p>
-        </div>
-
-
         <ion-card *ngFor="let item of tablondata">
             <ion-card-content [routerLink]="['/profile']" style="min-height: 100px;border-radius: 100px!important">
                 <h3 class="post">{{ item.info }}</h3>
@@ -105,4 +99,8 @@
         </ion-card>
 
     </div>
+
+
+
+
 </ion-content>

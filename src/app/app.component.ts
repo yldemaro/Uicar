@@ -14,6 +14,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
+  uid: any;
+  public usuario: any = {};
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -36,6 +39,10 @@ export class AppComponent {
         user => {
           if (user) {
             // this.rout.navigateByUrl('tabs/tab1');
+            this.usuario.uid = user.uid;
+            this.usuario.nombre = user.displayName;
+            this.uid = user.uid;
+            localStorage.setItem('uid', this.uid);
           } else {
             this.rout.navigateByUrl('/login');
           }

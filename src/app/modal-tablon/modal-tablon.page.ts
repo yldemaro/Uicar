@@ -39,7 +39,7 @@ export class ModalTablonPage implements OnInit {
     console.log(this.zona, this.nombre);
   }
   dismiss() {
-    this.modalcontroler.dismiss();
+
   }
 
   async makepost() {
@@ -58,8 +58,10 @@ export class ModalTablonPage implements OnInit {
     }).subscribe((response) => {
       console.log(response);
     });
-    this.dismiss();
     this.router.navigateByUrl('/');
+    this.modalcontroler.dismiss();
+
+
   }
 
 

@@ -19,13 +19,8 @@
 
         <h1>Salida : {{ item.inicio }}</h1>
         <h1>Destino : {{ item.destino }}</h1>
-        <h1>Hora : {{ item.hora }}</h1>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <ion-button [routerLink]="['/profile' , item.uid]" routerLinkActive="router-link-active" expand="full" shape="round">Ir perfil usuario</ion-button>
+        <h1 margin-bottom>Hora : {{ item.hora }}</h1>
+        <ion-button [routerLink]="['/profile']" routerLinkActive="router-link-active" expand="full" shape="round">Ir perfil usuario</ion-button>
 
     </div>
 </ion-content>

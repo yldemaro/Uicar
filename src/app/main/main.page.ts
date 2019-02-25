@@ -37,10 +37,7 @@ export class MainPage implements AfterViewInit {
   image = '../../assets/icons/marker.png';
   directionsDisplay: any;
 
-  cargandoTrayecto: Boolean = true;
-  cargandoPerfil: Boolean = true;
-  cargandoTablon: Boolean = true;
-  cargandoRutas: Boolean = true;
+  cargando: Boolean = true;
 
 
   lat: number;
@@ -53,6 +50,8 @@ export class MainPage implements AfterViewInit {
     private router: Router, public _servicie: ServicesService, private http: HttpClient,
     private geolocation: Geolocation) {
 
+    this.cargando = true;
+
     this.uid = localStorage.getItem('uid');
     console.log(this.uid);
 
@@ -62,19 +61,17 @@ export class MainPage implements AfterViewInit {
       this.router.navigateByUrl('login');
     }
 
-    this.zona = localStorage.getItem('ubication');
-    this.nombre = localStorage.getItem('nombre');
-
     if (this.zona === null || this.zona === undefined) {
       this.zona = 'Madrid';
-
       localStorage.setItem('ubication', this.zona);
     }
     if (this.nombre === null || this.nombre === undefined) {
       this.nombre = 'Usuario';
       localStorage.setItem('nombre', this.nombre);
     }
+  }
 
+  ngAfterViewInit() {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
@@ -82,17 +79,11 @@ export class MainPage implements AfterViewInit {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-
-  }
-  
-  ngAfterViewInit() {
-    setInterval(() => {
+    setTimeout(() => {
       this.trayectosload();
       this.tablonload();
-    }, 5000);
-    setTimeout(() => {
       this.rutas();
-    }, 3000);
+    }, 4000);
   }
 
   async presentModal() {
@@ -113,8 +104,8 @@ export class MainPage implements AfterViewInit {
   }
 
   async profileload() {
-    this.http.get(`http://uicar.openode.io/users/` + this.uid + '/info').subscribe((data: any) => {
-      this.cargandoPerfil = false;
+    await this.http.get(`http://uicar.openode.io/users/` + this.uid + '/info').subscribe((data: any) => {
+      this.cargando = false;
       this.profiledata = data;
       localStorage.setItem('nombre', this.profiledata[0].nombre);
       localStorage.setItem('ubication', this.profiledata[0].ubication);
@@ -123,7 +114,7 @@ export class MainPage implements AfterViewInit {
   async tablonload() {
     this.zona = localStorage.getItem('ubication');
     await this.http.get(`http://uicar.openode.io/zonas/${this.zona}/tablon`).subscribe((data: any) => {
-      this.cargandoTablon = false;
+      this.cargando = false;
       this.tablondata = data;
     });
   }
@@ -131,7 +122,7 @@ export class MainPage implements AfterViewInit {
   async trayectosload() {
     this.zona = localStorage.getItem('ubication');
     await this.http.get(`http://uicar.openode.io/zonas/${this.zona}`).subscribe((data: any) => {
-      this.cargandoTrayecto = false;
+      this.cargando = false;
       this.trayectos = data;
     });
   }
@@ -156,30 +147,28 @@ export class MainPage implements AfterViewInit {
 
 
     this.zona = localStorage.getItem('ubication');
-    setInterval(() => {
-      this.http.get(`http://uicar.openode.io/zonas/${this.zona}`).subscribe((data: any) => {
-        for (let i = 0; i < data.length; i++) {
-          this.directionsService.route({
-            origin: data[i].inicio,
-            destination: data[i].destino,
-            travelMode: 'DRIVING'
-          }, (response, status) => {
-            if (status === 'OK') {
-              this.cargandoRutas = false;
-              this.directionsDisplay = new google.maps.DirectionsRenderer({
-                suppressBicyclingLayer: false,
-                suppressMarkers: true
-              });
-              this.directionsDisplay.setMap(this.map);
+    this.http.get(`http://uicar.openode.io/zonas/${this.zona}`).subscribe((data: any) => {
+      for (let i = 0; i < data.length; i++) {
+        this.directionsService.route({
+          origin: data[i].inicio,
+          destination: data[i].destino,
+          travelMode: 'DRIVING'
+        }, (response, status) => {
+          if (status === 'OK') {
+            this.cargando = false;
+            this.directionsDisplay = new google.maps.DirectionsRenderer({
+              suppressBicyclingLayer: false,
+              suppressMarkers: true
+            });
+            this.directionsDisplay.setMap(this.map);
 
-              this.directionsDisplay.setDirections(response);
-            } else {
-              window.alert('Directions request failed due to ' + status);
-            }
-          });
-        }
-      });
-    }, 15000);
+            this.directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    });
 
 
 

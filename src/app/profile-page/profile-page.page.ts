@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -23,29 +23,38 @@ export class ProfilePagePage implements AfterViewInit {
 
 
   constructor(private http: HttpClient
-    , private aut: AngularFireAuth, private router: Router, public active: ActivatedRoute) {
+    , private aut: AngularFireAuth, private router: Router,
+    public active: ActivatedRoute, private cdRef: ChangeDetectorRef) {
     this.userprofile = true;
     this.uid = localStorage.getItem('uid');
 
-    if (this.uid === undefined) {
+    if (this.uid === undefined || this.uid === null) {
       this.router.navigateByUrl('login');
     }
 
   }
 
-  ngAfterViewInit() {
-    setInterval(() => {
+  async ngAfterViewInit() {
+    setTimeout(() => {
       this.profileload();
-    }, 3000);
+      this.trayectosload();
+    }, 4000);
   }
 
   async profileload() {
+
 
     await this.http.get(`http://uicar.openode.io/users/` + this.uid + '/info').subscribe((data: any) => {
       this.perfilT = data.length;
       this.userprofile = false;
       this.profiledata = data;
     });
+
+
+  }
+
+  async trayectosload() {
+
 
     await this.http.get(`http://uicar.openode.io/users/` + this.uid + '/trayectos').subscribe((data2: any) => {
       this.userprofile = false;
