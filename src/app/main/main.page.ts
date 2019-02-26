@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services.service';
@@ -18,15 +18,14 @@ declare var google;
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements AfterViewInit {
-
   uid: string;
-  profiledata = [{ nombre: '', ubication: '' }];
+  profiledata = [{ nombre: 'Usuario', ubication: 'Madrid' }];
   tablondata = [];
   data = [];
   trayectos = [];
   numero = 2;
-  zona: string;
-  nombre: string;
+  zona = 'Madrid';
+  nombre = 'Usuario';
 
   // Variables mapa
 
@@ -37,9 +36,6 @@ export class MainPage implements AfterViewInit {
   image = '../../assets/icons/marker.png';
   directionsDisplay: any;
 
-  cargando: Boolean = true;
-
-
   lat: number;
   lng: number;
 
@@ -49,29 +45,18 @@ export class MainPage implements AfterViewInit {
   constructor(private aut: AngularFireAuth, public modalController: ModalController,
     private router: Router, public _servicie: ServicesService, private http: HttpClient,
     private geolocation: Geolocation) {
+    this.aut.authState
+      .subscribe(
+        user => {
+          this.uid = user.uid;
+          localStorage.setItem('uid', this.uid);
+          console.log(user.uid);
+        },
+        () => {
+          // this.rout.navigateByUrl('/login');
+        }
+      );
 
-    this.cargando = true;
-
-    this.uid = localStorage.getItem('uid');
-    console.log(this.uid);
-
-    this.profileload();
-
-    if (this.uid === undefined) {
-      this.router.navigateByUrl('login');
-    }
-
-    if (this.zona === null || this.zona === undefined) {
-      this.zona = 'Madrid';
-      localStorage.setItem('ubication', this.zona);
-    }
-    if (this.nombre === null || this.nombre === undefined) {
-      this.nombre = 'Usuario';
-      localStorage.setItem('nombre', this.nombre);
-    }
-  }
-
-  ngAfterViewInit() {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
@@ -79,12 +64,34 @@ export class MainPage implements AfterViewInit {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
+
+    // Cargar ubicacion
+    this.uid = localStorage.getItem('uid');
+
+
     setTimeout(() => {
-      this.trayectosload();
-      this.tablonload();
-      this.rutas();
-    }, 4000);
+      this.profileload(this.uid);
+    }, 2000);
+
+    setTimeout(() => {
+      this.zona = this.profiledata[0].ubication;
+      this.nombre = this.profiledata[0].nombre;
+    }, 3000);
+
   }
+
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      localStorage.setItem('zona', this.zona);
+      this.rutas(this.zona);
+      this.trayectosload(this.zona);
+      this.tablonload(this.zona);
+    }, 4000);
+
+  }
+
+
 
   async presentModal() {
     console.log('Modal 1');
@@ -95,48 +102,58 @@ export class MainPage implements AfterViewInit {
   }
 
   async presentModal2() {
-    this.nombre = localStorage.getItem('nombre');
     const modal2 = await this.modalController.create({
       component: ModalTablonPage,
       componentProps: { zona: this.zona, nombre: this.nombre }
     });
     return await modal2.present();
   }
-
-  async profileload() {
-    await this.http.get(`http://uicar.openode.io/users/` + this.uid + '/info').subscribe((data: any) => {
-      this.cargando = false;
-      this.profiledata = data;
-      localStorage.setItem('nombre', this.profiledata[0].nombre);
-      localStorage.setItem('ubication', this.profiledata[0].ubication);
-    });
+  gotoprofile() {
+    this.router.navigateByUrl(`profile/` + this.uid);
   }
-  async tablonload() {
-    this.zona = localStorage.getItem('ubication');
-    await this.http.get(`http://uicar.openode.io/zonas/${this.zona}/tablon`).subscribe((data: any) => {
-      this.cargando = false;
+
+  gotoinfoTrayecto(id: string) {
+    this.router.navigateByUrl(`info-trayecto/` + id);
+  }
+
+  gotoPerfil(id: string) {
+    this.router.navigateByUrl(`profile/` + id);
+  }
+
+
+
+
+  async profileload(id: string) {
+    await this.http.get(`http://uicar.openode.io/users/` + id + '/info').subscribe((data: any) => {
+      console.log(data);
+      this.profiledata = data;
+    });
+
+    return this.profiledata;
+  }
+
+  async tablonload(id: string) {
+
+    await this.http.get(`http://uicar.openode.io/zonas/` + id + '/tablon').subscribe((data: any) => {
+      console.log(data);
       this.tablondata = data;
     });
   }
 
-  async trayectosload() {
-    this.zona = localStorage.getItem('ubication');
-    await this.http.get(`http://uicar.openode.io/zonas/${this.zona}`).subscribe((data: any) => {
-      this.cargando = false;
+  async trayectosload(id: string) {
+    await this.http.get(`http://uicar.openode.io/zonas/${id}`).subscribe((data: any) => {
+      console.log(data);
       this.trayectos = data;
     });
   }
 
-  open(id: number) {
-    this.router.navigateByUrl('info-trayecto' + '/' + id);
-  }
 
 
   // Mapa
 
   // Mapa
 
-  rutas() {
+  async rutas(zona: string) {
     this.directionsDisplay = new google.maps.DirectionsRenderer();
     this.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
@@ -145,9 +162,7 @@ export class MainPage implements AfterViewInit {
     });
     this.directionsDisplay.setMap(this.map);
 
-
-    this.zona = localStorage.getItem('ubication');
-    this.http.get(`http://uicar.openode.io/zonas/${this.zona}`).subscribe((data: any) => {
+    await this.http.get(`http://uicar.openode.io/zonas/${zona}`).subscribe((data: any) => {
       for (let i = 0; i < data.length; i++) {
         this.directionsService.route({
           origin: data[i].inicio,
@@ -155,13 +170,12 @@ export class MainPage implements AfterViewInit {
           travelMode: 'DRIVING'
         }, (response, status) => {
           if (status === 'OK') {
-            this.cargando = false;
+            // this.directionsDisplay.setDirections(response);
             this.directionsDisplay = new google.maps.DirectionsRenderer({
               suppressBicyclingLayer: false,
               suppressMarkers: true
             });
             this.directionsDisplay.setMap(this.map);
-
             this.directionsDisplay.setDirections(response);
           } else {
             window.alert('Directions request failed due to ' + status);
@@ -169,11 +183,52 @@ export class MainPage implements AfterViewInit {
         });
       }
     });
+  }
 
 
+  async doRefresh(event) {
 
+    this.directionsDisplay = new google.maps.DirectionsRenderer();
+    this.map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: { lat: this.lat, lng: this.lng },
+      mapTypeId: 'terrain'
+    });
+    this.directionsDisplay.setMap(this.map);
 
+    const zona = localStorage.getItem('zona');
 
+    await this.http.get(`http://uicar.openode.io/zonas/${zona}`).subscribe((data: any) => {
+      this.trayectos = data;
+      event.target.complete();
+    });
+    await this.http.get(`http://uicar.openode.io/zonas/${zona}/tablon`).subscribe((data: any) => {
+      this.tablondata = data;
+      event.target.complete();
+    });
+
+    await this.http.get(`http://uicar.openode.io/zonas/${zona}`).subscribe((data: any) => {
+      for (let i = 0; i < data.length; i++) {
+        this.directionsService.route({
+          origin: data[i].inicio,
+          destination: data[i].destino,
+          travelMode: 'DRIVING'
+        }, (response, status) => {
+          if (status === 'OK') {
+            // this.directionsDisplay.setDirections(response);
+            this.directionsDisplay = new google.maps.DirectionsRenderer({
+              suppressBicyclingLayer: false,
+              suppressMarkers: true
+            });
+            this.directionsDisplay.setMap(this.map);
+            this.directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+      event.target.complete();
+    });
   }
 
 }

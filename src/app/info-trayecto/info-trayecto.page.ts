@@ -30,20 +30,21 @@ export class InfoTrayectoPage implements OnInit {
 
   directionsService = new google.maps.DirectionsService();
 
-  constructor(public rout: Router, public active: ActivatedRoute ,  private http: HttpClient,
+  constructor(public rout: Router, public active: ActivatedRoute, private http: HttpClient,
     private geolocation: Geolocation) {
     this.cargarvariables();
     setTimeout(() => {
       this.rutas();
     }, 2000);
     this.trayectoload(this.id);
+    console.log(this.active.snapshot.paramMap.get('id'));
   }
 
   ngOnInit() {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
-      console.log('thus cordenadas', this.lng , this.lat);
+      console.log('thus cordenadas', this.lng, this.lat);
     }).catch((error) => {
       console.log('Error getting location', error);
     });
@@ -58,7 +59,7 @@ export class InfoTrayectoPage implements OnInit {
       this.id = data2.id;
     });
     console.log(this.id);
-   }
+  }
 
 
   rutas() {

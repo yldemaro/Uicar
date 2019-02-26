@@ -1,52 +1,63 @@
 <ion-header no-border>
     <ion-toolbar no-border>
-        <ion-buttons [routerLink]="['/']" slot="start">
+        <ion-buttons (click)="gotomain()" slot="start">
             <ion-icon size="large" src="/assets/icons/left-arrow.svg" padding></ion-icon>
         </ion-buttons>
         <ion-buttons slot="end">
-            <ion-icon [routerLink]="['/create']"size="large" src="/assets/icons/add.svg" padding></ion-icon>
+            <ion-icon [routerLink]="['/create']" size="large" src="/assets/icons/add.svg" padding></ion-icon>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
+
 <ion-content padding>
+    
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
-
-    <div *ngIf="perfilT===0 ">
+    <div *ngIf="(profiledata)?.length === 0 ">
         <img class="circle" src="assets/icons/user.svg">
         <div class="noprofile">
             <h3 *ngIf="(profiledata)?.length === 0 ">Perfil vacío rellenalo ya!</h3>
             <ion-button (click)="gotoedit()" *ngIf="(profiledata)?.length === 0 ">Rellenar</ion-button>
         </div>
     </div>
-
-
-    <div text-center *ngIf="userprofile===true">
+    <div *ngIf="userprofile" text-center>
         <ion-spinner name="bubbles"></ion-spinner>
-        <p>Cargando Perfil</p>
     </div>
 
-
     <div *ngFor="let item of profiledata">
-        <img *ngIf="item.img" class="circle" [src]="item.img">
-        <h2 color="secondary">{{ item.nombre }}</h2>
+        <div text-center>
+            <img *ngIf="item.img" class="circle" [src]="item.img">
+        </div>
+        <h2 margin-botttom color="secondary">{{ item.nombre }}</h2>
         <h3>Contacto</h3>
-        <ion-row>
-            <ion-col size="4">
-                <ion-icon (click)="gotowhatsapp(item.whatsapp)" style=" font-size: 22px;"
-                    src="assets/icons/whatsap.svg"></ion-icon>
-            </ion-col>
-            <ion-col class="ubication" size="6">
-                <ion-icon style=" font-size: 25px;" src="assets/icons/placeholder.svg"></ion-icon>
-                {{ item.ubication }}
-            </ion-col>
-            <ion-col size="2">
-                <ion-icon style=" font-size: 29px;margin-top:-15px;" src="/assets/icons/settings-work-tool (1).svg"
-                    padding [routerLink]="['/edituser']"></ion-icon>
-            </ion-col>
 
-        </ion-row>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="4">
+                    <ion-icon (click)="gotowhatsapp(item.whatsapp)" style=" font-size: 22px;"
+                        src="assets/icons/whatsap.svg"></ion-icon>
+                </ion-col>
+                <ion-col class="ubication" size="6">
+                    <ion-icon style=" font-size: 25px;" src="assets/icons/placeholder.svg"></ion-icon>
+                    {{ item.ubication }}
+                </ion-col>
+                <ion-col size="2">
+                    <ion-icon style=" font-size: 29px;margin-top:-15px;" src="/assets/icons/settings-work-tool (1).svg"
+                        padding (click)="gotoedit()"></ion-icon>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+
 
         <h3 margin-bottom>Trayectos</h3>
+
+        <div *ngIf="userprofile" text-center>
+            <ion-spinner name="bubbles"></ion-spinner>
+        </div>
+
         <div margin-bottom class="noprofile" *ngIf="(profiletrayectos)?.length === 0 ">
             <img class="notrayect" src="assets/icons/car.svg">
             <h3 style="color: #E45454;" class="notrayecto">Aun no tiene ningun trayecto!</h3>
@@ -86,6 +97,6 @@
                 </ion-row>
             </ion-card-content>
         </ion-card>
-    </div>
 
+    </div>
 </ion-content>

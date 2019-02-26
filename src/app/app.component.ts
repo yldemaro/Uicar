@@ -42,7 +42,6 @@ export class AppComponent {
             this.usuario.uid = user.uid;
             this.usuario.nombre = user.displayName;
             this.uid = user.uid;
-            localStorage.setItem('uid', this.uid);
           } else {
             this.rout.navigateByUrl('/login');
           }

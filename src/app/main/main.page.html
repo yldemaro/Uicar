@@ -3,7 +3,7 @@
         <ion-title style=" color: #3B455A;font-size: 24px;font-weight: bold;text-align: center">
             Inicio
         </ion-title>
-        <ion-buttons [routerLink]="['/profile']" slot="start">
+        <ion-buttons slot="start" (click)="gotoprofile()">
             <ion-icon size="large" src="/assets/icons/avatar.svg" padding></ion-icon>
         </ion-buttons>
         <ion-buttons slot="end">
@@ -18,27 +18,22 @@
 
 <ion-content>
 
-    <div text-center *ngIf="cargando===true">
-        <ion-spinner name="bubbles"></ion-spinner>
-        <p>Espere Cargando</p>
-    </div>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
     <div #map class="map" id="map" style="position: relative"></div>
     <div padding>
-        <h2 margin-bottom> Trayectos cerca tuyo </h2>
-        <div text-center *ngIf="cargandoTrayecto===true">
-            <ion-spinner name="bubbles"></ion-spinner>
-            <p>Cargando Tablon</p>
-        </div>
-        <ion-card *ngFor="let item of trayectos">
-            <ion-card-content (click)="open(item.id)" style="height: 110px;border-radius: 100px!important">
+        <h2> Trayectos cerca tuyo </h2>
+        <br>
+        <ion-card *ngFor="let item of trayectos" (click)="gotoinfoTrayecto(item.id)">
+            <ion-card-content style="height: 110px;border-radius: 100px!important">
                 <ion-row class="carta">
                     <ion-col size="5">
                         {{ item.inicio }}
                     </ion-col>
                     <ion-col size="2">
-                        <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg">
-                        </ion-icon>
+                        <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg"></ion-icon>
                     </ion-col>
                     <ion-col size="5">
                         {{ item.destino }}
@@ -50,15 +45,26 @@
                     <ion-col size="5">
                         {{ item.hora }} Salida
                     </ion-col>
-                    <ion-col size="2"></ion-col>
+                    <ion-col size="2">
+
+                    </ion-col>
                     <ion-col style="font-size: 12px;text-align: center" size="3">
-                        {{ item.asientos }} <br>Asiento
+                        {{ item.asientos }} <br>Asientos
                     </ion-col>
                     <ion-col size="2">
                         <br>
                         <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;"
                             src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
                     </ion-col>
+
+                </ion-row>
+
+                <ion-row class="cartaicon">
+                    <ion-col size="10">
+
+                    </ion-col>
+
+
 
                 </ion-row>
             </ion-card-content>
@@ -74,7 +80,7 @@
 
             </ion-col>
             <ion-col size="2">
-                <ion-buttons *ngFor="let item of profiledata" (click)="presentModal2(item, nombre)">
+                <ion-buttons *ngFor="let item of profiledata" (click)="presentModal2(item.ubication)">
                     <ion-icon slot="end" size="large" src="/assets/icons/add.svg"></ion-icon>
                 </ion-buttons>
             </ion-col>
@@ -82,8 +88,8 @@
 
         <h2>Tablon</h2>
 
-        <ion-card *ngFor="let item of tablondata">
-            <ion-card-content [routerLink]="['/profile']" style="min-height: 100px;border-radius: 100px!important">
+        <ion-card *ngFor="let item of tablondata" (click)="gotoPerfil(item.uid)">
+            <ion-card-content style="min-height: 100px;border-radius: 100px!important">
                 <h3 class="post">{{ item.info }}</h3>
 
                 <ion-row>
@@ -97,10 +103,6 @@
                 </ion-row>
             </ion-card-content>
         </ion-card>
-
     </div>
-
-
-
 
 </ion-content>

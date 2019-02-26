@@ -23,14 +23,14 @@ export class ModalTablonPage implements OnInit {
   constructor(public modalcontroler: ModalController, private aut: AngularFireAuth,
     private http: HttpClient, public router: Router, public active: ActivatedRoute, ) {
     this.aut.authState
-      .subscribe(
-        user => {
-          this.uid = user.uid;
-          console.log(user.uid);
-        },
-        () => {
-          // this.rout.navigateByUrl('/login');
-        }
+    .subscribe(
+      user => {
+        this.uid = user.uid;
+        console.log(user.uid);
+      },
+      () => {
+        // this.rout.navigateByUrl('/login');
+      }
       );
 
   }
@@ -39,7 +39,8 @@ export class ModalTablonPage implements OnInit {
     console.log(this.zona, this.nombre);
   }
   dismiss() {
-
+    this.modalcontroler.dismiss();
+    this.router.navigateByUrl('/');
   }
 
   async makepost() {
@@ -58,7 +59,7 @@ export class ModalTablonPage implements OnInit {
     }).subscribe((response) => {
       console.log(response);
     });
-    this.router.navigateByUrl('/');
+    
     this.modalcontroler.dismiss();
 
 

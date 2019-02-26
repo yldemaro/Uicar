@@ -78,7 +78,7 @@ export class EditUserPage implements OnInit {
 
       console.log(response);
     });
-    this.router.navigateByUrl('/profile');
+    this.router.navigateByUrl(`profile/${this.uid}`);
   }
 
   cargarImagen() {
