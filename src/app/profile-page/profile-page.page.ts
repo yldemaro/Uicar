@@ -22,14 +22,13 @@ export class ProfilePagePage implements OnInit {
 
   constructor(private http: HttpClient, private aut: AngularFireAuth,
     private router: Router, public active: ActivatedRoute, private auth: ServicesService) {
-    this.userprofile = true;
 
     this.uid = this.active.snapshot.paramMap.get('id');
     console.log(this.active.snapshot.paramMap.get('id'));
-    console.log('entro en profile');
-    // setInterval(() => {
+
     this.profileload(this.uid);
-    // }, 6000);
+
+    this.trayectosload(this.uid);
   }
 
   ngOnInit() { }
@@ -37,13 +36,12 @@ export class ProfilePagePage implements OnInit {
   async profileload(id: string) {
 
     await this.http.get(`http://uicar.openode.io/users/` + id + '/info').subscribe((data: any) => {
-      console.log(data);
-      this.userprofile = false;
       this.profiledata = data;
     });
+  }
 
+  async trayectosload(id: string) {
     await this.http.get(`http://uicar.openode.io/users/` + id + '/trayectos').subscribe((data2: any) => {
-      this.userprofile = false;
       this.profiletrayectos = data2;
     });
   }
@@ -53,6 +51,9 @@ export class ProfilePagePage implements OnInit {
   }
   gotoedit() {
     this.router.navigateByUrl('/edituser/' + this.uid);
+  }
+  create() {
+    this.router.navigateByUrl('create');
   }
 
   gotowhatsapp(telf: string) {

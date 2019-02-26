@@ -54,6 +54,10 @@ export class InfoTrayectoPage implements OnInit {
     this.rout.navigateByUrl('/');
   }
 
+  gotoprofile(id: string) {
+    this.rout.navigateByUrl('profile/' + id);
+  }
+
   async cargarvariables() {
     await this.active.params.subscribe((data2: any) => {
       this.id = data2.id;

@@ -4,13 +4,13 @@
             <ion-icon size="large" src="/assets/icons/left-arrow.svg" padding></ion-icon>
         </ion-buttons>
         <ion-buttons slot="end">
-            <ion-icon [routerLink]="['/create']" size="large" src="/assets/icons/add.svg" padding></ion-icon>
+            <ion-icon (click)="create()" size="large" src="/assets/icons/add.svg" padding ></ion-icon>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    
+
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
@@ -18,12 +18,9 @@
     <div *ngIf="(profiledata)?.length === 0 ">
         <img class="circle" src="assets/icons/user.svg">
         <div class="noprofile">
-            <h3 *ngIf="(profiledata)?.length === 0 ">Perfil vacío rellenalo ya!</h3>
-            <ion-button (click)="gotoedit()" *ngIf="(profiledata)?.length === 0 ">Rellenar</ion-button>
+            <h3>Perfil vacío rellenalo ya!</h3>
+            <ion-button (click)="gotoedit()">Rellenar</ion-button>
         </div>
-    </div>
-    <div *ngIf="userprofile" text-center>
-        <ion-spinner name="bubbles"></ion-spinner>
     </div>
 
     <div *ngFor="let item of profiledata">
@@ -53,10 +50,6 @@
 
 
         <h3 margin-bottom>Trayectos</h3>
-
-        <div *ngIf="userprofile" text-center>
-            <ion-spinner name="bubbles"></ion-spinner>
-        </div>
 
         <div margin-bottom class="noprofile" *ngIf="(profiletrayectos)?.length === 0 ">
             <img class="notrayect" src="assets/icons/car.svg">

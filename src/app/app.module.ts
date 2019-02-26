@@ -17,8 +17,9 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ModalPagePage } from './modal-page/modal-page.page';
 
-
+//nativo
 import { Camera } from '@ionic-native/Camera/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,7 @@ import { Camera } from '@ionic-native/Camera/ngx';
   providers: [
     StatusBar,
     Camera,
+    GooglePlus,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
