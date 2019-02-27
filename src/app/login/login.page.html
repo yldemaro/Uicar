@@ -8,7 +8,7 @@
 
     <h4>Inicia sesión</h4>
     <h1>Uicar</h1>
-    <ion-list>
+    <ion-list margin-top margin-bottom>
 
         <ion-item>
             <ion-input type="text" placeholder="Email" [(ngModel)]="username"></ion-input>
@@ -21,25 +21,12 @@
         </ion-item>
 
     </ion-list>
-    <br>
 
-    <ion-button fill="solid" expand="block" color="primary" (click)="login()">Entrar</ion-button>
-    <br>
-    <br>
-
-
-
-
-
-
-    <div (click)="loginGmail()" class="tc flex jusify-center align-center flex-wrap w-100">
+    <ion-button margin-bottom fill="solid" expand="block" color="primary" (click)="login()">Entrar</ion-button>
+    <div margin-top margin-bottom (click)="loginGmail()" class="tc flex jusify-center align-center flex-wrap w-100">
         <div class="w-100 tc flex align-center justify-center">
             <button class="buttone google flex justify-center align-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" class="flex self-center pr2"  > Inicia con google</button>
         </div>
-
-
     </div>
-    <br>
-    <br>
     <p class="register-text" (click)="goRegister()">No tienes cuenta ?<a> Registrate</a> </p>
 </ion-content>

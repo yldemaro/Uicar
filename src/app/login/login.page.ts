@@ -25,10 +25,9 @@ export class LoginPage {
     const { username, password } = this;
     try {
       const res = await this.afs.auth.signInWithEmailAndPassword(username, password);
-      console.log(res);
+
       this.rout.navigateByUrl('/');
     } catch (error) {
-      console.log(error);
       if (error.code === 'auth/wrong-password') {
         this.errorContrasena();
       } else if (error.code === 'auth/user-not-found') {
@@ -39,11 +38,9 @@ export class LoginPage {
   async loginGmail() {
     try {
       const res = await this.afs.auth.signInWithPopup(new auth.GoogleAuthProvider());
-      console.log(res);
       this.presentAlert(this.username);
       this.rout.navigateByUrl('/');
     } catch (error) {
-      console.log(error);
       if (error.code === 'auth/wrong-password') {
         this.errorContrasena();
       } else if (error.code === 'auth/user-not-found') {

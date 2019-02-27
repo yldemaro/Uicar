@@ -38,10 +38,11 @@ export class AppComponent {
       .subscribe(
         user => {
           if (user) {
-            // this.rout.navigateByUrl('tabs/tab1');
             this.usuario.uid = user.uid;
             this.usuario.nombre = user.displayName;
             this.uid = user.uid;
+            localStorage.setItem('uid', this.uid);
+            this.rout.navigateByUrl('/');
           } else {
             this.rout.navigateByUrl('/login');
           }

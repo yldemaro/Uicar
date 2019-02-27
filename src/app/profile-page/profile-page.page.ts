@@ -17,25 +17,44 @@ export class ProfilePagePage implements OnInit {
   uid: string;
   uidprofile: string;
   userprofile: boolean;
+  uidP: string;
 
 
 
   constructor(private http: HttpClient, private aut: AngularFireAuth,
     private router: Router, public active: ActivatedRoute, private auth: ServicesService) {
 
+
+
+    if (localStorage.getItem('uid') === null || localStorage.getItem('uid') === undefined) {
+      this.router.navigateByUrl('/login');
+    }
+
     this.uid = this.active.snapshot.paramMap.get('id');
-    console.log(this.active.snapshot.paramMap.get('id'));
 
-    this.profileload(this.uid);
 
-    this.trayectosload(this.uid);
+    setTimeout(() => {
+      this.uidP = localStorage.getItem('uid');
+      this.uid = this.active.snapshot.paramMap.get('id');
+      console.log(this.uidP);
+    }, 2000);
+
+    setTimeout(() => {
+      this.profileload(this.uid);
+      this.trayectosload(this.uid);
+    }, 3000);
+
+
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+  }
 
   async profileload(id: string) {
-
+    console.log(id);
     await this.http.get(`http://uicar.openode.io/users/` + id + '/info').subscribe((data: any) => {
+      console.log(data);
       this.profiledata = data;
     });
   }

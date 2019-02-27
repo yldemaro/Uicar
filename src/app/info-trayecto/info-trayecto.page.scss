@@ -24,3 +24,52 @@ h1 {
     color: #3B455A;
     font-weight: bold;
 }
+
+.buttone {
+    position: relative;
+    border: none;
+    padding: 15px;
+    margin: 1rem;
+    border-radius: 99999px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    transition: .2s all;
+    transition-timing-function: ease;
+}
+
+.buttone:hover {
+    transform: translatey(3px);
+}
+
+.buttone:focus {
+    outline: none;
+}
+
+.buttone.teal {
+    background-color: #02C4D9;
+    box-shadow: 0 7px 50px rgba(2, 196, 217, 0.5);
+    color: #FFFFFF;
+}
+
+.buttone.teal:hover {
+    box-shadow: 0 2px 10px rgba(2, 196, 217, 0.5);
+}
+
+.buttone.google {
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 20px rgba(39, 68, 74, 0.2);
+    color: #506569;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1rem;
+}
+
+.buttone.google>img {
+    height: 20px;
+    width: 20px;
+}
+
+.buttone.google:hover {
+    box-shadow: 0 1px 5px rgba(39, 68, 74, 0.2);
+}

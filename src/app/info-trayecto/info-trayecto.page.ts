@@ -32,12 +32,15 @@ export class InfoTrayectoPage implements OnInit {
 
   constructor(public rout: Router, public active: ActivatedRoute, private http: HttpClient,
     private geolocation: Geolocation) {
+
     this.cargarvariables();
     setTimeout(() => {
       this.rutas();
     }, 2000);
+
+
     this.trayectoload(this.id);
-    console.log(this.active.snapshot.paramMap.get('id'));
+
   }
 
   ngOnInit() {
@@ -59,10 +62,7 @@ export class InfoTrayectoPage implements OnInit {
   }
 
   async cargarvariables() {
-    await this.active.params.subscribe((data2: any) => {
-      this.id = data2.id;
-    });
-    console.log(this.id);
+    this.id = this.active.snapshot.paramMap.get('id');
   }
 
 
@@ -75,10 +75,7 @@ export class InfoTrayectoPage implements OnInit {
     });
     this.directionsDisplay.setMap(this.map);
 
-    console.log(this.id);
-
     this.http.get(`http://uicar.openode.io/trayectos/${this.id}`).subscribe((data: any) => {
-      console.log(data);
       for (let i = 0; i < data.length; i++) {
         this.directionsService.route({
           origin: data[i].inicio,
@@ -100,6 +97,7 @@ export class InfoTrayectoPage implements OnInit {
       }
     });
   }
+
   async trayectoload(id: string) {
 
     await this.http.get(`http://uicar.openode.io/trayectos/` + id).subscribe((data: any) => {

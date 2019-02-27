@@ -4,7 +4,7 @@
             <ion-icon size="large" src="/assets/icons/left-arrow.svg" padding></ion-icon>
         </ion-buttons>
         <ion-buttons slot="end">
-            <ion-icon (click)="create()" size="large" src="/assets/icons/add.svg" padding ></ion-icon>
+            <ion-icon (click)="create()" size="large" src="/assets/icons/add.svg" padding></ion-icon>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -19,9 +19,11 @@
         <img class="circle" src="assets/icons/user.svg">
         <div class="noprofile">
             <h3>Perfil vacío rellenalo ya!</h3>
-            <ion-button (click)="gotoedit()">Rellenar</ion-button>
+            <ion-button (click)="gotoedit()" *ngIf="uid === uidP">Rellenar</ion-button>
         </div>
     </div>
+
+
 
     <div *ngFor="let item of profiledata">
         <div text-center>

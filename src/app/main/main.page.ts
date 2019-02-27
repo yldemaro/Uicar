@@ -45,17 +45,10 @@ export class MainPage implements AfterViewInit {
   constructor(private aut: AngularFireAuth, public modalController: ModalController,
     private router: Router, public _servicie: ServicesService, private http: HttpClient,
     private geolocation: Geolocation) {
-    this.aut.authState
-      .subscribe(
-        user => {
-          this.uid = user.uid;
-          localStorage.setItem('uid', this.uid);
-          console.log(user.uid);
-        },
-        () => {
-          // this.rout.navigateByUrl('/login');
-        }
-      );
+      
+    if ( localStorage.getItem('uid') === null || localStorage.getItem('uid') === undefined ) {
+      this.router.navigateByUrl('/login');
+    }
 
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
@@ -94,7 +87,6 @@ export class MainPage implements AfterViewInit {
 
 
   async presentModal() {
-    console.log('Modal 1');
     const modal = await this.modalController.create({
       component: ModalPagePage,
     });
@@ -109,23 +101,22 @@ export class MainPage implements AfterViewInit {
     return await modal2.present();
   }
   gotoprofile() {
-    this.router.navigateByUrl(`profile/` + this.uid);
+    this.router.navigateByUrl(`profile/${this.uid}`);
   }
 
   gotoinfoTrayecto(id: string) {
-    this.router.navigateByUrl(`info-trayecto/` + id);
+    this.router.navigateByUrl(`info-trayecto/${id}`);
   }
 
   gotoPerfil(id: string) {
-    this.router.navigateByUrl(`profile/` + id);
+    this.router.navigateByUrl(`profile/${id}`);
   }
 
 
 
 
   async profileload(id: string) {
-    await this.http.get(`http://uicar.openode.io/users/` + id + '/info').subscribe((data: any) => {
-      console.log(data);
+    await this.http.get(`http://uicar.openode.io/users/${id}/info`).subscribe((data: any) => {
       this.profiledata = data;
     });
 
@@ -134,15 +125,14 @@ export class MainPage implements AfterViewInit {
 
   async tablonload(id: string) {
 
-    await this.http.get(`http://uicar.openode.io/zonas/` + id + '/tablon').subscribe((data: any) => {
-      console.log(data);
+    await this.http.get(`http://uicar.openode.io/zonas/${id}/tablon`).subscribe((data: any) => {
+
       this.tablondata = data;
     });
   }
 
   async trayectosload(id: string) {
     await this.http.get(`http://uicar.openode.io/zonas/${id}`).subscribe((data: any) => {
-      console.log(data);
       this.trayectos = data;
     });
   }
