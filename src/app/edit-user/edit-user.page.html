@@ -15,18 +15,20 @@
             <ion-item id="rounded">
                 <ion-input type="text" placeholder="Nombre" [(ngModel)]="nombre"></ion-input>
             </ion-item>
+            <br>
             <ion-item id="rounded">
                 <ion-input type="text" placeholder="Telefono" [(ngModel)]="telefono"></ion-input>
             </ion-item>
+            <br>
             <ion-item id="rounded">
                 <ion-label style="color:grey;">Zona</ion-label>
                 <ion-select value="brown" okText="Hecho" cancelText="Cancelar" [(ngModel)]="zona">
                     <ion-select-option *ngFor="let item of zones" style="color:grey;" [value]="item.nombre">
                         {{ item.nombre }}</ion-select-option>
-
                 </ion-select>
             </ion-item>
         </ion-list>
+        <br><br>
         <ion-button margin-top fill="solid" expand="block" color="primary" (click)="makepost()">Guardar</ion-button>
     </div>
 </ion-content>

@@ -11,15 +11,11 @@
 
 <ion-content padding>
 
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-
-    <div *ngIf="(profiledata)?.length === 0 ">
+    <div *ngIf="(profiledata)?.length === 0">
         <img class="circle" src="assets/icons/user.svg">
         <div class="noprofile">
             <h3>Perfil vacío rellenalo ya!</h3>
-            <ion-button (click)="gotoedit()" *ngIf="uid === uidP">Rellenar</ion-button>
+            <ion-button (click)="gotoedit()" *ngIf="id===uid">Rellenar</ion-button>
         </div>
     </div>
 
@@ -43,8 +39,9 @@
                     {{ item.ubication }}
                 </ion-col>
                 <ion-col size="2">
-                    <ion-icon style=" font-size: 29px;margin-top:-15px;" src="/assets/icons/settings-work-tool (1).svg"
-                        padding (click)="gotoedit()"></ion-icon>
+                    <ion-icon *ngIf="id===uid" style=" font-size: 29px;margin-top:-15px;"
+                        src="/assets/icons/settings-work-tool (1).svg" padding (click)="gotoedit()">
+                    </ion-icon>
                 </ion-col>
 
             </ion-row>
@@ -65,7 +62,8 @@
                         {{ item.inicio }}
                     </ion-col>
                     <ion-col size="2">
-                        <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg"></ion-icon>
+                        <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg">
+                        </ion-icon>
                     </ion-col>
                     <ion-col size="5">
                         {{ item.destino }}
@@ -94,4 +92,5 @@
         </ion-card>
 
     </div>
+
 </ion-content>

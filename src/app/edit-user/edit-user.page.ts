@@ -40,10 +40,10 @@ export class EditUserPage implements OnInit {
   ngOnInit() {
   }
   gotouser() {
-    this.router.navigateByUrl('/profile/' + this.uid);
+    this.router.navigate([`/profile/${this.uid}`]);
   }
   gotocreate() {
-    this.router.navigateByUrl('/create/');
+    this.router.navigate([`/create`]);
   }
   async cargaruid() {
     await this.active.params.subscribe((data2: any) => {
@@ -55,13 +55,13 @@ export class EditUserPage implements OnInit {
 
     await this.http.get(`http://uicar.openode.io/zonas/`).subscribe((data: any) => {
       this.zones = data;
-      console.log(this.zones);
     });
   }
 
   async makepost() {
-    const { nombre, telefono, zona, url, img } = this;
-    console.log(nombre, telefono, zona);
+    const telf = '34' + this.telefono;
+    const { nombre, zona, url, img } = this;
+    console.log(nombre, telf, zona);
 
 
     if (this.cargaImagen.url === undefined) {
@@ -73,12 +73,11 @@ export class EditUserPage implements OnInit {
       uid: this.uid,
       img: this.cargaImagen.url,
       ubication: zona,
-      whatsapp: telefono
+      whatsapp: telf
     }).subscribe((response) => {
-
       console.log(response);
+      this.router.navigate([`/profile/${this.uid}`]);
     });
-    this.router.navigateByUrl(`profile/${this.uid}`);
   }
 
   cargarImagen() {

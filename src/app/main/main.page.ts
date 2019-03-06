@@ -1,12 +1,13 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ServicesService } from '../services.service';
 import { HttpClient } from '@angular/common/http';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { ModalPagePage } from '../modal-page/modal-page.page';
 import { ModalTablonPage } from '../modal-tablon/modal-tablon.page';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 
 declare var google;
@@ -23,19 +24,15 @@ export class MainPage implements AfterViewInit {
   tablondata = [];
   data = [];
   trayectos = [];
-  numero = 2;
   zona = 'Madrid';
   nombre = 'Usuario';
 
   // Variables mapa
 
   key = 'AIzaSyATy7pX219NlBc9Sac6Biz0JgWR-cTB2f8';
-  flightPath: any;
   map: any;
-  marker: any;
-  image = '../../assets/icons/marker.png';
   directionsDisplay: any;
-
+  usuario: any;
   lat: number;
   lng: number;
 
@@ -45,11 +42,31 @@ export class MainPage implements AfterViewInit {
   constructor(private aut: AngularFireAuth, public modalController: ModalController,
     private router: Router, public _servicie: ServicesService, private http: HttpClient,
     private geolocation: Geolocation) {
-      
-    if ( localStorage.getItem('uid') === null || localStorage.getItem('uid') === undefined ) {
-      this.router.navigateByUrl('/login');
-    }
 
+  }
+
+  ngAfterViewInit() {
+
+    this.posicion();
+    this.logueado();
+
+    setTimeout(() => {
+      this.profileload(this.uid);
+    }, 1000);
+
+    setTimeout(() => {
+      this.zona = this.profiledata[0].ubication;
+      this.nombre = this.profiledata[0].nombre;
+    }, 2000);
+
+    setTimeout(() => {
+      this.trayectosload(this.zona);
+      this.tablonload(this.zona);
+      this.rutas(this.zona);
+    }, 3000);
+  }
+
+  posicion() {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
@@ -57,34 +74,23 @@ export class MainPage implements AfterViewInit {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-
-    // Cargar ubicacion
-    this.uid = localStorage.getItem('uid');
-
-
-    setTimeout(() => {
-      this.profileload(this.uid);
-    }, 2000);
-
-    setTimeout(() => {
-      this.zona = this.profiledata[0].ubication;
-      this.nombre = this.profiledata[0].nombre;
-    }, 3000);
-
   }
 
+  async logueado() {
+    await this.aut.authState
+      .subscribe(
+        user => {
+          console.log(user.uid);
+          if (!user) {
+            this.router.navigate(['/login']);
+          } else {
+            console.log('logueado');
+            this.uid = user.uid;
+          }
+        });
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      localStorage.setItem('zona', this.zona);
-      this.rutas(this.zona);
-      this.trayectosload(this.zona);
-      this.tablonload(this.zona);
-    }, 4000);
-
+    return this.uid;
   }
-
-
 
   async presentModal() {
     const modal = await this.modalController.create({
@@ -100,16 +106,17 @@ export class MainPage implements AfterViewInit {
     });
     return await modal2.present();
   }
+
   gotoprofile() {
-    this.router.navigateByUrl(`profile/${this.uid}`);
+    this.router.navigate([`/profile/${this.uid}`]);
   }
 
   gotoinfoTrayecto(id: string) {
-    this.router.navigateByUrl(`info-trayecto/${id}`);
+    this.router.navigate([`/info-trayecto/${id}`]);
   }
 
   gotoPerfil(id: string) {
-    this.router.navigateByUrl(`profile/${id}`);
+    this.router.navigate([`/profile/${id}`]);
   }
 
 
@@ -119,22 +126,23 @@ export class MainPage implements AfterViewInit {
     await this.http.get(`http://uicar.openode.io/users/${id}/info`).subscribe((data: any) => {
       this.profiledata = data;
     });
-
     return this.profiledata;
   }
 
   async tablonload(id: string) {
 
     await this.http.get(`http://uicar.openode.io/zonas/${id}/tablon`).subscribe((data: any) => {
-
       this.tablondata = data;
     });
+    return this.tablondata;
   }
 
   async trayectosload(id: string) {
     await this.http.get(`http://uicar.openode.io/zonas/${id}`).subscribe((data: any) => {
       this.trayectos = data;
     });
+
+    return this.trayectos;
   }
 
 
@@ -144,9 +152,10 @@ export class MainPage implements AfterViewInit {
   // Mapa
 
   async rutas(zona: string) {
+
     this.directionsDisplay = new google.maps.DirectionsRenderer();
     this.map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
+      zoom: 11,
       center: { lat: this.lat, lng: this.lng },
       mapTypeId: 'terrain'
     });
@@ -176,49 +185,31 @@ export class MainPage implements AfterViewInit {
   }
 
 
-  async doRefresh(event) {
+  doRefresh(event) {
 
-    this.directionsDisplay = new google.maps.DirectionsRenderer();
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: { lat: this.lat, lng: this.lng },
-      mapTypeId: 'terrain'
-    });
-    this.directionsDisplay.setMap(this.map);
+    this.posicion();
+    this.logueado();
 
-    const zona = localStorage.getItem('zona');
+    setTimeout(() => {
+      this.profileload(this.uid);
+    }, 1000);
 
-    await this.http.get(`http://uicar.openode.io/zonas/${zona}`).subscribe((data: any) => {
-      this.trayectos = data;
+    setTimeout(() => {
+      this.zona = this.profiledata[0].ubication;
+      this.nombre = this.profiledata[0].nombre;
+    }, 2000);
+
+    setTimeout(() => {
+      this.trayectosload(this.zona);
+      this.tablonload(this.zona);
+      this.rutas(this.zona);
+    }, 3000);
+
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
       event.target.complete();
-    });
-    await this.http.get(`http://uicar.openode.io/zonas/${zona}/tablon`).subscribe((data: any) => {
-      this.tablondata = data;
-      event.target.complete();
-    });
-
-    await this.http.get(`http://uicar.openode.io/zonas/${zona}`).subscribe((data: any) => {
-      for (let i = 0; i < data.length; i++) {
-        this.directionsService.route({
-          origin: data[i].inicio,
-          destination: data[i].destino,
-          travelMode: 'DRIVING'
-        }, (response, status) => {
-          if (status === 'OK') {
-            // this.directionsDisplay.setDirections(response);
-            this.directionsDisplay = new google.maps.DirectionsRenderer({
-              suppressBicyclingLayer: false,
-              suppressMarkers: true
-            });
-            this.directionsDisplay.setMap(this.map);
-            this.directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      }
-      event.target.complete();
-    });
+    }, 7000);
   }
 
 }

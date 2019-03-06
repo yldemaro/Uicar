@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AngularFireAuth } from 'angularfire2/auth';
 declare var google;
 
 @Component({
@@ -13,7 +14,7 @@ export class InfoTrayectoPage implements OnInit {
 
   id: string;
   zona: string;
-
+  uid: any;
   trayectodata = [];
 
 
@@ -21,7 +22,6 @@ export class InfoTrayectoPage implements OnInit {
   flightPath: any;
   map: any;
   marker: any;
-  image = '../../assets/icons/marker.png';
   directionsDisplay: any;
 
   lat: number;
@@ -30,10 +30,12 @@ export class InfoTrayectoPage implements OnInit {
 
   directionsService = new google.maps.DirectionsService();
 
-  constructor(public rout: Router, public active: ActivatedRoute, private http: HttpClient,
-    private geolocation: Geolocation) {
+  constructor(public router: Router, public active: ActivatedRoute, private http: HttpClient,
+    private geolocation: Geolocation, private aut: AngularFireAuth) {
 
-    this.cargarvariables();
+    this.logueado();
+    this.id = this.active.snapshot.paramMap.get('id');
+
     setTimeout(() => {
       this.rutas();
     }, 2000);
@@ -47,29 +49,38 @@ export class InfoTrayectoPage implements OnInit {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
-      console.log('thus cordenadas', this.lng, this.lat);
+      console.log('tus cordenadas', this.lng, this.lat);
     }).catch((error) => {
       console.log('Error getting location', error);
     });
   }
 
+  logueado() {
+    this.aut.authState
+      .subscribe(
+        user => {
+          if (user) {
+            this.uid = user.uid;
+          } else {
+            this.router.navigate([`/login`]);
+          }
+        }
+      );
+  }
+
   return() {
-    this.rout.navigateByUrl('/');
+    this.router.navigate(['home']);
   }
 
   gotoprofile(id: string) {
-    this.rout.navigateByUrl('profile/' + id);
-  }
-
-  async cargarvariables() {
-    this.id = this.active.snapshot.paramMap.get('id');
+    this.router.navigate([`/profile/${id}`]);
   }
 
 
   rutas() {
     this.directionsDisplay = new google.maps.DirectionsRenderer();
     this.map = new google.maps.Map(document.getElementById('map2'), {
-      zoom: 4,
+      zoom: 11,
       center: { lat: this.lat, lng: this.lng },
       mapTypeId: 'terrain'
     });

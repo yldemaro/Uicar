@@ -11,8 +11,12 @@
 </ion-header>
 
 <ion-content>
-    <div #map class="map" id="map2" style="position: relative"></div>
+
+    <div margin-bottom #map class="map" id="map2" style="position: relative"></div>
+
     <div padding>
+
+        <br><br>
         <h2>Informacion</h2>
         <div *ngFor="let item of trayectodata">
 
@@ -24,24 +28,13 @@
             <h1>Destino : {{ item.destino }}</h1>
             <h1 margin-bottom>Hora : {{ item.hora }}</h1>
 
-            <!-- <ion-button style="margin-top:40px;" margin-top margin-bottom (click)="gotoprofile(item.uid)"
+            <div text-center margin-top margin-bottom (click)="gotoprofile(item.uid)"
                 class="tc flex jusify-center align-center flex-wrap w-100">
                 <div class="w-100 tc flex align-center justify-center">
-                    <button class="buttone google flex justify-center align-center"><img
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-                            class="flex self-center pr2"> Ir perfil usuario</button>
-                </div>
-            </ion-button> -->
-            <div margin-top margin-bottom (click)="gotoprofile(item.uid)"
-                class="tc flex jusify-center align-center flex-wrap w-100">
-                <div class="w-100 tc flex align-center justify-center">
-                    <button class="buttone google flex justify-center align-center"><img
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+                    <button class="buttone google flex justify-center align-center"><img src="assets/icons/avatar.svg"
                             class="flex self-center pr2"> Ir Perfil de Usuario</button>
                 </div>
             </div>
-
-
         </div>
     </div>
 

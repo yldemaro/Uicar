@@ -40,7 +40,7 @@ export class ModalTablonPage implements OnInit {
   }
   dismiss() {
     this.modalcontroler.dismiss();
-    this.router.navigateByUrl('/');
+    this.router.navigate(['/home']);
   }
 
   async makepost() {

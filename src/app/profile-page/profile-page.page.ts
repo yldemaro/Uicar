@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -9,50 +9,60 @@ import { ServicesService } from '../services.service';
   templateUrl: './profile-page.page.html',
   styleUrls: ['./profile-page.page.scss'],
 })
-export class ProfilePagePage implements OnInit {
+export class ProfilePagePage implements AfterViewInit {
 
   profiledata = [];
   profiletrayectos = [];
 
   uid: string;
-  uidprofile: string;
-  userprofile: boolean;
-  uidP: string;
-
+  id: any;
+  tamano: number;
 
 
   constructor(private http: HttpClient, private aut: AngularFireAuth,
     private router: Router, public active: ActivatedRoute, private auth: ServicesService) {
 
 
-
-    if (localStorage.getItem('uid') === null || localStorage.getItem('uid') === undefined) {
-      this.router.navigateByUrl('/login');
-    }
-
     this.uid = this.active.snapshot.paramMap.get('id');
 
 
-    setTimeout(() => {
-      this.uidP = localStorage.getItem('uid');
-      this.uid = this.active.snapshot.paramMap.get('id');
-      console.log(this.uidP);
-    }, 2000);
+  }
 
+  ngAfterViewInit() {
+
+    this.logueado();
     setTimeout(() => {
+      this.id = this.id;
       this.profileload(this.uid);
       this.trayectosload(this.uid);
-    }, 3000);
+    }, 1000);
 
+    setTimeout(() => {
+      this.id = this.id;
+      this.profileload(this.uid);
+      this.trayectosload(this.uid);
+    }, 2000);
 
   }
 
-  ngOnInit() {
 
+
+  logueado() {
+    this.aut.authState
+      .subscribe(
+        user => {
+          if (!user) {
+            this.router.navigate(['/login']);
+          } else {
+            this.id = user.uid;
+          }
+        }
+      );
   }
+
+
 
   async profileload(id: string) {
-    console.log(id);
     await this.http.get(`http://uicar.openode.io/users/` + id + '/info').subscribe((data: any) => {
       console.log(data);
       this.profiledata = data;
@@ -61,40 +71,25 @@ export class ProfilePagePage implements OnInit {
 
   async trayectosload(id: string) {
     await this.http.get(`http://uicar.openode.io/users/` + id + '/trayectos').subscribe((data2: any) => {
+      console.log(data2);
       this.profiletrayectos = data2;
     });
   }
 
   gotomain() {
-    this.router.navigateByUrl('/');
+    this.router.navigate(['home']);
   }
   gotoedit() {
-    this.router.navigateByUrl('/edituser/' + this.uid);
+    this.router.navigate(['edituser', this.uid]);
   }
   create() {
-    this.router.navigateByUrl('create');
+    this.router.navigate(['create']);
   }
 
   gotowhatsapp(telf: string) {
-    console.log(telf);
+    // console.log(telf);
     const newurl = 'https://api.whatsapp.com/send?phone=' + telf;
     window.open(newurl, '_system', '_blank');
 
   }
-
-  async doRefresh(event) {
-
-    await this.http.get(`http://uicar.openode.io/users/` + this.uid + '/info').subscribe((data: any) => {
-      this.profiledata = data;
-      event.target.complete();
-    });
-
-    await this.http.get(`http://uicar.openode.io/users/` + this.uid + '/trayectos').subscribe((data2: any) => {
-      this.profiletrayectos = data2;
-      event.target.complete();
-    });
-
-  }
-
-
 }

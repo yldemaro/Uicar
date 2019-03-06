@@ -22,11 +22,16 @@
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-    <div #map class="map" id="map" style="position: relative"></div>
-    <div padding>
-        <h2 margin-bottom> Trayectos cerca tuyo </h2>
-        <ion-card style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos" (click)="gotoinfoTrayecto(item.id)">
-            <ion-card-content style="height: 110px;border-radius: 100px!important">
+    <div margin-bottom #map class="map" id="map" style="position: relative"></div>
+
+    <div padding margin-bottom margin-top>
+
+        <br>
+        <h2 margin-top margin-bottom> Trayectos cerca tuyo </h2>
+        <br>
+        <ion-card style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos"
+            (click)="gotoinfoTrayecto(item.id)">
+            <ion-card-content style="height: 110px;border-radius: 100px !important">
                 <ion-row class="carta">
                     <ion-col size="5">
                         {{ item.inicio }}
@@ -57,19 +62,10 @@
                     </ion-col>
 
                 </ion-row>
-
-                <ion-row class="cartaicon">
-                    <ion-col size="10">
-
-                    </ion-col>
-
-
-
-                </ion-row>
             </ion-card-content>
         </ion-card>
 
-        <ion-row>
+        <ion-row margin-bottom margin-top>
             <ion-col size="10">
 
             </ion-col>
@@ -80,7 +76,7 @@
             </ion-col>
         </ion-row>
 
-        <h2 margin-bottom>Tablon</h2>
+        <h2 margin-top margin-bottom>Tablón</h2>
 
         <ion-card *ngFor="let item of tablondata" (click)="gotoPerfil(item.uid)">
             <ion-card-content style="min-height: 100px;border-radius: 100px!important">

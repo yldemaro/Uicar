@@ -26,11 +26,18 @@ export class ModalPagePage implements OnInit {
 
   async signOut() {
 
-    const res = await this.aut.auth.signOut();
-    console.log(res);
-    localStorage.clear();
-    this.router.navigateByUrl('/login');
-    this.modalcontroler.dismiss();
+
+
+
+    const res = this.aut.auth.signOut().then(data => {
+      this.modalcontroler.dismiss();
+      this.router.navigate(['login']);
+      sessionStorage.clear();
+    }).catch(error => {
+      console.log(error);
+    });
+
+
   }
 
 

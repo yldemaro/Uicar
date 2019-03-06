@@ -12,21 +12,21 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage {
 
-  username: string ;
-  password: string ;
+  username: string;
+  password: string;
 
-  constructor(public afs: AngularFireAuth, public rout: Router , public service: ServicesService ,
-     public alertController: AlertController) {
+  constructor(public afs: AngularFireAuth, public rout: Router, public service: ServicesService,
+    public alertController: AlertController) {
     this.service.initializeApp();
-   }
+  }
 
   async login() {
 
     const { username, password } = this;
     try {
-      const res = await this.afs.auth.signInWithEmailAndPassword(username, password);
-
-      this.rout.navigateByUrl('/');
+      const res = await this.afs.auth.signInWithEmailAndPassword(username, password).then(data => {
+        this.rout.navigate(['/home']);
+      });
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
         this.errorContrasena();
@@ -39,7 +39,7 @@ export class LoginPage {
     try {
       const res = await this.afs.auth.signInWithPopup(new auth.GoogleAuthProvider());
       this.presentAlert(this.username);
-      this.rout.navigateByUrl('/');
+      this.rout.navigate(['/home']);
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
         this.errorContrasena();
@@ -50,7 +50,7 @@ export class LoginPage {
   }
 
   goRegister() {
-    this.rout.navigateByUrl('/register');
+    this.rout.navigate(['/register']);
   }
 
   async presentAlert(username) {

@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
   uid: any;
-  public usuario: any = {};
 
   constructor(
     private platform: Platform,
@@ -31,25 +30,24 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.logueado();
     });
 
 
+  }
+
+  logueado() {
     this.aut.authState
       .subscribe(
         user => {
-          if (user) {
-            this.usuario.uid = user.uid;
-            this.usuario.nombre = user.displayName;
-            this.uid = user.uid;
-            localStorage.setItem('uid', this.uid);
-            this.rout.navigateByUrl('/');
+          if (!user) {
+            this.rout.navigate(['/login']);
           } else {
-            this.rout.navigateByUrl('/login');
+            this.uid = user.uid;
+            this.rout.navigate([`home`]);
           }
-        },
-        () => {
-          this.rout.navigateByUrl('/login');
         }
       );
   }
+
 }
