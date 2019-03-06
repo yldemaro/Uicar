@@ -21,23 +21,16 @@ export class ProfilePagePage implements AfterViewInit {
 
   constructor(private http: HttpClient, private aut: AngularFireAuth,
     private router: Router, public active: ActivatedRoute, private auth: ServicesService) {
-
-
     this.uid = this.active.snapshot.paramMap.get('id');
-
-
   }
 
   ngAfterViewInit() {
 
     this.logueado();
+    this.profileload(this.uid);
+    
     setTimeout(() => {
-      this.id = this.id;
-      this.profileload(this.uid);
-      this.trayectosload(this.uid);
-    }, 1000);
-
-    setTimeout(() => {
+      console.log(this.uid);
       this.id = this.id;
       this.profileload(this.uid);
       this.trayectosload(this.uid);
@@ -71,7 +64,7 @@ export class ProfilePagePage implements AfterViewInit {
 
   async trayectosload(id: string) {
     await this.http.get(`http://uicar.openode.io/users/` + id + '/trayectos').subscribe((data2: any) => {
-      console.log(data2);
+      // console.log(data2);
       this.profiletrayectos = data2;
     });
   }

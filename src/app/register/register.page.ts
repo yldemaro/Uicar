@@ -28,8 +28,6 @@ export class RegisterPage {
     } else {
       try {
         const res = this.afr.auth.createUserWithEmailAndPassword(email, password);
-        console.log(res);
-        this.rout.navigate(['/login']);
       } catch (error) {
         console.log(error);
       }

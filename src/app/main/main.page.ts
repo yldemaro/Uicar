@@ -132,14 +132,19 @@ export class MainPage implements AfterViewInit {
   async tablonload(id: string) {
 
     await this.http.get(`http://uicar.openode.io/zonas/${id}/tablon`).subscribe((data: any) => {
+
       this.tablondata = data;
+
     });
     return this.tablondata;
   }
 
   async trayectosload(id: string) {
     await this.http.get(`http://uicar.openode.io/zonas/${id}`).subscribe((data: any) => {
+
+
       this.trayectos = data;
+
     });
 
     return this.trayectos;
@@ -197,19 +202,15 @@ export class MainPage implements AfterViewInit {
     setTimeout(() => {
       this.zona = this.profiledata[0].ubication;
       this.nombre = this.profiledata[0].nombre;
+      this.trayectosload(this.zona);
+      this.tablonload(this.zona);
     }, 2000);
 
     setTimeout(() => {
-      this.trayectosload(this.zona);
-      this.tablonload(this.zona);
       this.rutas(this.zona);
+      event.target.complete();
     }, 3000);
 
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 7000);
   }
 
 }
