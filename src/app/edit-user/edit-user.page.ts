@@ -17,12 +17,17 @@ export class EditUserPage implements OnInit {
   telefono: any;
   nombre: any;
   zona: any;
-  img = 'assets/icons/user.svg';
 
   url: any;
 
   constructor(public router: Router, public active: ActivatedRoute, private aut: AngularFireAuth
     , private http: HttpClient, private cargaImagen: ServicesService) {
+    console.log(this.cargaImagen.url);
+    
+    if (this.cargaImagen.url === undefined) {
+      this.cargaImagen.url = '/assets/icons/selectimage.png';
+    }
+
     this.aut.authState
       .subscribe(
         user => {
@@ -59,13 +64,15 @@ export class EditUserPage implements OnInit {
   }
 
   async makepost() {
+    const fecha = Date.now();
+    console.log(fecha);
     const telf = '34' + this.telefono;
-    const { nombre, zona, url, img } = this;
+    const { nombre, zona, url } = this;
     console.log(nombre, telf, zona);
 
 
     if (this.cargaImagen.url === undefined) {
-      this.cargaImagen.url = 'assets/icons/icono.png';
+      this.cargaImagen.url = '/assets/icons/user.svg';
     }
 
     await this.http.post('http://uicar.openode.io/edituser/', {
@@ -73,10 +80,15 @@ export class EditUserPage implements OnInit {
       uid: this.uid,
       img: this.cargaImagen.url,
       ubication: zona,
-      whatsapp: telf
+      whatsapp: telf,
+      fecha: fecha
     }).subscribe((response) => {
       console.log(response);
-      this.router.navigate([`/profile/${this.uid}`]);
+      if (response) {
+        this.router.navigate([`home`]);
+      }
+    }, error => {
+      console.log(error);
     });
   }
 
