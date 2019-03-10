@@ -28,6 +28,7 @@ export class RegisterPage {
     } else {
       try {
         const res = this.afr.auth.createUserWithEmailAndPassword(email, password);
+        this.rout.navigate(['/home']);
       } catch (error) {
         console.log(error);
       }
@@ -41,7 +42,7 @@ export class RegisterPage {
       console.log(res);
       this.rout.navigate(['/home']);
     } catch (error) {
-      console.log(error);
+      this.errorServ();
     }
 
 
@@ -53,6 +54,15 @@ export class RegisterPage {
   async errorpassIguales() {
     const alert = await this.alertController.create({
       message: 'Lo siento sus contraseñas son diferentes',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async errorServ() {
+    const alert = await this.alertController.create({
+      message: 'Lo siento no se pudo crear su usuario, vuelva a intentar',
       buttons: ['OK']
     });
 

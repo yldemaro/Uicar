@@ -40,6 +40,7 @@ export class AppComponent {
     this.aut.authState
       .subscribe(
         user => {
+          console.log(user.uid);
           if (!user) {
             this.rout.navigate(['/login']);
           } else {

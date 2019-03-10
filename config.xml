@@ -85,9 +85,9 @@
     <plugin name="cordova-plugin-advanced-http" spec="2.0.4" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <plugin name="cordova-plugin-geolocation" spec="4.0.1" />
+    <engine name="android" spec="7.1.4" />
+    <engine name="ios" spec="4.5.5" />
     <plugin name="cordova-plugin-googleplus" spec="^7.0.0">
         <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
     </plugin>
-    <engine name="android" spec="7.1.4" />
-    <engine name="ios" spec="4.5.5" />
 </widget>

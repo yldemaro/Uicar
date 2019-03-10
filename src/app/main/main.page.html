@@ -26,44 +26,54 @@
 
     <div padding margin-bottom margin-top>
 
+        <div text-center *ngIf="(trayectos)?.length === 0">
+            <h3>Los Proyectos estan vacios</h3>
+            <p>Crea una en tu perfil y empieza a disfrutar con tus amigos</p>
+        </div>
+
+        <div text-center *ngIf="(trayectos)?.length != 0">
+            <h2 margin-top margin-bottom> Trayectos cerca tuyo </h2>
+            <br>
+            <ion-card style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos"
+                (click)="gotoinfoTrayecto(item.id)">
+                <ion-card-content style="height: 110px;border-radius: 100px !important">
+                    <ion-row class="carta">
+                        <ion-col size="5">
+                            {{ item.inicio }}
+                        </ion-col>
+                        <ion-col size="2">
+                            <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg">
+                            </ion-icon>
+                        </ion-col>
+                        <ion-col size="5">
+                            {{ item.destino }}
+                        </ion-col>
+
+                    </ion-row>
+
+                    <ion-row class="cartadesc">
+                        <ion-col size="5">
+                            {{ item.hora }} Salida
+                        </ion-col>
+                        <ion-col size="2">
+
+                        </ion-col>
+                        <ion-col style="font-size: 12px;text-align: center" size="3">
+                            {{ item.asientos }} <br>Asientos
+                        </ion-col>
+                        <ion-col size="2">
+                            <br>
+                            <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;"
+                                src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
+                        </ion-col>
+
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </div>
+
         <br>
-        <h2 margin-top margin-bottom> Trayectos cerca tuyo </h2>
-        <br>
-        <ion-card style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos"
-            (click)="gotoinfoTrayecto(item.id)">
-            <ion-card-content style="height: 110px;border-radius: 100px !important">
-                <ion-row class="carta">
-                    <ion-col size="5">
-                        {{ item.inicio }}
-                    </ion-col>
-                    <ion-col size="2">
-                        <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg"></ion-icon>
-                    </ion-col>
-                    <ion-col size="5">
-                        {{ item.destino }}
-                    </ion-col>
 
-                </ion-row>
-
-                <ion-row class="cartadesc">
-                    <ion-col size="5">
-                        {{ item.hora }} Salida
-                    </ion-col>
-                    <ion-col size="2">
-
-                    </ion-col>
-                    <ion-col style="font-size: 12px;text-align: center" size="3">
-                        {{ item.asientos }} <br>Asientos
-                    </ion-col>
-                    <ion-col size="2">
-                        <br>
-                        <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;"
-                            src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
-                    </ion-col>
-
-                </ion-row>
-            </ion-card-content>
-        </ion-card>
 
         <ion-row margin-bottom margin-top>
             <ion-col size="10">
@@ -76,23 +86,33 @@
             </ion-col>
         </ion-row>
 
-        <h2 margin-top margin-bottom>Tablón</h2>
 
-        <ion-card *ngFor="let item of tablondata" (click)="gotoPerfil(item.uid)">
-            <ion-card-content style="min-height: 100px;border-radius: 100px!important">
-                <h3 class="post">{{ item.info }}</h3>
+        <div text-center *ngIf="(tablondata)?.length === 0">
+            <h3>El tablón esta vacio</h3>
+            <p>"Haz un post y encuentra compañeros de viaje"</p>
+        </div>
 
-                <ion-row>
-                    <ion-col size="9">
-                        <h4 style="text-align: left;color: #3B455A">{{ item.nombre }}</h4>
-                    </ion-col>
-                    <ion-col size="3">
-                        <h4>{{ item.fecha | date:'short' }}</h4>
+        <div *ngIf="(tablondata)?.length != 0">
+            <h2 margin-top margin-bottom>Tablón</h2>
 
-                    </ion-col>
-                </ion-row>
-            </ion-card-content>
-        </ion-card>
+            <ion-card *ngFor="let item of tablondata" (click)="gotoPerfil(item.uid)">
+                <ion-card-content style="min-height: 100px;border-radius: 100px!important">
+                    <h3 class="post">{{ item.info }}</h3>
+
+                    <ion-row>
+                        <ion-col size="9">
+                            <h4 style="text-align: left;color: #3B455A">{{ item.nombre }}</h4>
+                        </ion-col>
+                        <ion-col size="3">
+                            <h4>{{ item.fecha | date:'short' }}</h4>
+
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </div>
+
+
     </div>
 
 </ion-content>

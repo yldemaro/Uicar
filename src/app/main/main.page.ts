@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, DoCheck, OnChanges } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServicesService } from '../services.service';
@@ -18,9 +18,9 @@ declare var google;
   templateUrl: './main.page.html',
   styleUrls: ['./main.page.scss'],
 })
-export class MainPage implements AfterViewInit {
+export class MainPage implements AfterViewInit, OnInit {
   uid: string;
-  profiledata = [{ nombre: 'Usuario', ubication: 'Madrid' }];
+  profiledata = [{ nombre: 'Usuario', ubication: 'Madrid', whatsapp: '' }];
   tablondata = [];
   data = [];
   trayectos = [];
@@ -34,6 +34,7 @@ export class MainPage implements AfterViewInit {
   directionsDisplay: any;
   usuario: any;
   lat: number;
+  num: any;
   lng: number;
 
   directionsService = new google.maps.DirectionsService();
@@ -41,14 +42,14 @@ export class MainPage implements AfterViewInit {
 
   constructor(private aut: AngularFireAuth, public modalController: ModalController,
     private router: Router, public _servicie: ServicesService, private http: HttpClient,
-    private geolocation: Geolocation) {
+    private geolocation: Geolocation) { }
 
+  ngOnInit() {
+    this.logueado();
+    this.posicion();
   }
 
   ngAfterViewInit() {
-
-    this.posicion();
-    this.logueado();
 
     setTimeout(() => {
       this.profileload(this.uid);
@@ -57,6 +58,7 @@ export class MainPage implements AfterViewInit {
     setTimeout(() => {
       this.zona = this.profiledata[0].ubication;
       this.nombre = this.profiledata[0].nombre;
+      this.num = this.profiledata[0].whatsapp;
     }, 2000);
 
     setTimeout(() => {
@@ -70,7 +72,7 @@ export class MainPage implements AfterViewInit {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
-      console.log('tus cordenadas', this.lng, this.lat);
+      // console.log('tus cordenadas', this.lng, this.lat);
     }).catch((error) => {
       console.log('Error getting location', error);
     });
@@ -80,7 +82,6 @@ export class MainPage implements AfterViewInit {
     await this.aut.authState
       .subscribe(
         user => {
-          console.log(user.uid);
           if (!user) {
             this.router.navigate(['/login']);
           } else {
@@ -124,6 +125,7 @@ export class MainPage implements AfterViewInit {
 
   async profileload(id: string) {
     await this.http.get(`http://uicar.openode.io/users/${id}/info`).subscribe((data: any) => {
+      // console.log(data);
       this.profiledata = data;
     });
     return this.profiledata;
@@ -131,7 +133,7 @@ export class MainPage implements AfterViewInit {
 
   async tablonload(id: string) {
 
-    await this.http.get(`http://uicar.openode.io/zonas/${id}/tablon`).subscribe((data: any) => {
+    await this.http.get(`http://uicar.openode.io/tablon/${id}/5`).subscribe((data: any) => {
 
       this.tablondata = data;
 
@@ -140,19 +142,14 @@ export class MainPage implements AfterViewInit {
   }
 
   async trayectosload(id: string) {
-    await this.http.get(`http://uicar.openode.io/zonas/${id}`).subscribe((data: any) => {
-
-
+    await this.http.get(`http://uicar.openode.io/zonas/${id}/3`).subscribe((data: any) => {
+      // console.log(data);
       this.trayectos = data;
-
     });
-
     return this.trayectos;
   }
 
 
-
-  // Mapa
 
   // Mapa
 
@@ -166,7 +163,7 @@ export class MainPage implements AfterViewInit {
     });
     this.directionsDisplay.setMap(this.map);
 
-    await this.http.get(`http://uicar.openode.io/zonas/${zona}`).subscribe((data: any) => {
+    await this.http.get(`http://uicar.openode.io/zonas/${zona}/3`).subscribe((data: any) => {
       for (let i = 0; i < data.length; i++) {
         this.directionsService.route({
           origin: data[i].inicio,
@@ -174,13 +171,18 @@ export class MainPage implements AfterViewInit {
           travelMode: 'DRIVING'
         }, (response, status) => {
           if (status === 'OK') {
-            // this.directionsDisplay.setDirections(response);
+            console.log(response);
+            this.directionsDisplay.setDirections(response);
+
             this.directionsDisplay = new google.maps.DirectionsRenderer({
-              suppressBicyclingLayer: false,
-              suppressMarkers: true
+              suppressBicyclingLayer: true
+              // suppressMarkers: true
+            });
+            google.maps.event.addListener(response.routes[0].legs[0], 'click', function () {
+              console.log(response.routes[0].legs[0].end_address);
             });
             this.directionsDisplay.setMap(this.map);
-            this.directionsDisplay.setDirections(response);
+
           } else {
             window.alert('Directions request failed due to ' + status);
           }
@@ -202,11 +204,12 @@ export class MainPage implements AfterViewInit {
     setTimeout(() => {
       this.zona = this.profiledata[0].ubication;
       this.nombre = this.profiledata[0].nombre;
-      this.trayectosload(this.zona);
-      this.tablonload(this.zona);
+      this.num = this.profiledata[0].whatsapp;
     }, 2000);
 
     setTimeout(() => {
+      this.trayectosload(this.zona);
+      this.tablonload(this.zona);
       this.rutas(this.zona);
       event.target.complete();
     }, 3000);

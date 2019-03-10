@@ -72,8 +72,9 @@ export class CreatePage implements AfterViewInit {
   }
 
   async makepost() {
+    const fecha = Date.now();
+    console.log(fecha);
     const { inicio, destino, hora, rutina, asientos, vehiculo, descripcion, uid } = this;
-    console.log(inicio, destino, hora, rutina, asientos, vehiculo);
     await this.http.post('http://uicar.openode.io/create/', {
       inicio: inicio,
       destino: destino,
@@ -84,9 +85,11 @@ export class CreatePage implements AfterViewInit {
       vehiculo: vehiculo,
       zona: inicio,
       info: descripcion,
+      fecha: fecha
     }).subscribe((response) => {
       console.log(response);
+      this.router.navigate([`home`]);
     });
-    this.router.navigate([`/profile/${this.uid}`]);
+
   }
 }

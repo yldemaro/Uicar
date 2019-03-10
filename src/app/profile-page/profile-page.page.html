@@ -3,7 +3,7 @@
         <ion-buttons (click)="gotomain()" slot="start">
             <ion-icon size="large" src="/assets/icons/left-arrow.svg" padding></ion-icon>
         </ion-buttons>
-        <ion-buttons slot="end">
+        <ion-buttons slot="end" *ngIf="(profiledata)?.length != 0">
             <ion-icon (click)="create()" size="large" src="/assets/icons/add.svg" padding></ion-icon>
         </ion-buttons>
     </ion-toolbar>
@@ -11,86 +11,97 @@
 
 <ion-content padding>
 
-    <div *ngIf="(profiledata)?.length === 0">
-        <img class="circle" src="assets/icons/user.svg">
-        <div class="noprofile">
-            <h3>Perfil vacío rellenalo ya!</h3>
-            <ion-button (click)="gotoedit()" *ngIf="id===uid">Rellenar</ion-button>
-        </div>
+    <div text-center *ngIf="cargado === true">
+        <h3>Espere.......</h3>
     </div>
 
+    <div text-center *ngIf="cargado === false">
 
-
-    <div *ngFor="let item of profiledata">
-        <div text-center>
-            <img *ngIf="item.img" class="circle" [src]="item.img">
+        <div *ngIf="(profiledata)?.length === 0">
+            <img class="circle" src="assets/icons/user.svg">
+            <div class="noprofile">
+                <h3>Perfil vacío rellenalo ya!</h3>
+                <ion-button (click)="gotoedit()" *ngIf="id===uid">Rellenar</ion-button>
+            </div>
         </div>
-        <h2 margin-botttom color="secondary">{{ item.nombre }}</h2>
-        <h3>Contacto</h3>
+        <div *ngFor="let item of profiledata">
+            <div text-center>
+                <img *ngIf="item.img" class="circle" [src]="item.img">
+            </div>
+            <h2 margin-botttom color="secondary">{{ item.nombre }}</h2>
+            <h3>Contacto</h3>
 
-        <ion-grid>
-            <ion-row>
-                <ion-col size="4">
-                    <ion-icon (click)="gotowhatsapp(item.whatsapp)" style=" font-size: 22px;"
-                        src="assets/icons/whatsap.svg"></ion-icon>
-                </ion-col>
-                <ion-col class="ubication" size="6">
-                    <ion-icon style=" font-size: 25px;" src="assets/icons/placeholder.svg"></ion-icon>
-                    {{ item.ubication }}
-                </ion-col>
-                <ion-col size="2">
-                    <ion-icon *ngIf="id===uid" style=" font-size: 29px;margin-top:-15px;"
-                        src="/assets/icons/settings-work-tool (1).svg" padding (click)="gotoedit()">
-                    </ion-icon>
-                </ion-col>
-
-            </ion-row>
-        </ion-grid>
-
-
-        <h3 margin-bottom>Trayectos</h3>
-
-        <div margin-bottom class="noprofile" *ngIf="(profiletrayectos)?.length === 0 ">
-            <img class="notrayect" src="assets/icons/car.svg">
-            <h3 style="color: #E45454;" class="notrayecto">Aun no tiene ningun trayecto!</h3>
-        </div>
-
-        <ion-card *ngFor="let item of profiletrayectos">
-            <ion-card-content style="height: 110px;border-radius: 100px!important">
-                <ion-row class="carta">
-                    <ion-col size="5">
-                        {{ item.inicio }}
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-icon (click)="gotowhatsapp(item.whatsapp)" style=" font-size: 22px;"
+                            src="assets/icons/whatsap.svg"></ion-icon>
+                    </ion-col>
+                    <ion-col class="ubication" size="6">
+                        <ion-icon style=" font-size: 25px;" src="assets/icons/placeholder.svg"></ion-icon>
+                        {{ item.ubication }}
                     </ion-col>
                     <ion-col size="2">
-                        <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg">
+                        <ion-icon *ngIf="id===uid" style=" font-size: 29px;margin-top:-15px;"
+                            src="/assets/icons/settings-work-tool (1).svg" padding (click)="gotoedit()">
                         </ion-icon>
                     </ion-col>
-                    <ion-col size="5">
-                        {{ item.destino }}
-                    </ion-col>
 
                 </ion-row>
+            </ion-grid>
 
-                <ion-row class="cartadesc">
-                    <ion-col size="5">
-                        {{ item.hora }} Salida
-                    </ion-col>
-                    <ion-col size="2">
 
-                    </ion-col>
-                    <ion-col style="font-size: 12px;text-align: center" size="3">
-                        {{ item.asientos }} <br>Asientos
-                    </ion-col>
-                    <ion-col size="2">
-                        <br>
-                        <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;"
-                            src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
-                    </ion-col>
+            <h3 margin-bottom>Trayectos</h3>
 
-                </ion-row>
-            </ion-card-content>
-        </ion-card>
+            <div margin-bottom class="noprofile" *ngIf="(profiletrayectos)?.length === 0 ">
+                <img class="notrayect" src="assets/icons/car.svg">
+                <h3 style="color: #E45454;" class="notrayecto">Aun no tiene ningun trayecto!</h3>
+            </div>
+
+            <ion-card *ngFor="let item of profiletrayectos">
+                <ion-card-content style="height: 110px;border-radius: 100px!important">
+                    <ion-row class="carta">
+                        <ion-col size="5">
+                            {{ item.inicio }}
+                        </ion-col>
+                        <ion-col size="2">
+                            <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg">
+                            </ion-icon>
+                        </ion-col>
+                        <ion-col size="5">
+                            {{ item.destino }}
+                        </ion-col>
+
+                    </ion-row>
+
+                    <ion-row class="cartadesc">
+                        <ion-col size="5">
+                            {{ item.hora }} Salida
+                        </ion-col>
+                        <ion-col size="2">
+
+                        </ion-col>
+                        <ion-col style="font-size: 12px;text-align: center" size="3">
+                            {{ item.asientos }} <br>Asientos
+                        </ion-col>
+                        <ion-col size="2">
+                            <br>
+                            <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;"
+                                src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
+                        </ion-col>
+
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+
+        </div>
 
     </div>
+
+
+
+
+
+
 
 </ion-content>

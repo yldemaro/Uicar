@@ -1,15 +1,14 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { JsonPipe } from '@angular/common';
 import { ServicesService } from '../services.service';
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.page.html',
   styleUrls: ['./profile-page.page.scss'],
 })
-export class ProfilePagePage implements AfterViewInit {
+export class ProfilePagePage implements AfterViewInit, OnInit {
 
   profiledata = [];
   profiletrayectos = [];
@@ -17,25 +16,28 @@ export class ProfilePagePage implements AfterViewInit {
   uid: string;
   id: any;
   tamano: number;
+  cargado: boolean;
 
 
   constructor(private http: HttpClient, private aut: AngularFireAuth,
     private router: Router, public active: ActivatedRoute, private auth: ServicesService) {
     this.uid = this.active.snapshot.paramMap.get('id');
+    this.cargado = true;
+  }
+
+  ngOnInit() {
+    this.id = this.id;
+    this.logueado();
   }
 
   ngAfterViewInit() {
-
-    this.logueado();
     this.profileload(this.uid);
-    
+    this.trayectosload(this.uid);
+
     setTimeout(() => {
-      console.log(this.uid);
-      this.id = this.id;
       this.profileload(this.uid);
       this.trayectosload(this.uid);
-    }, 2000);
-
+    }, 1000);
   }
 
 
@@ -56,8 +58,10 @@ export class ProfilePagePage implements AfterViewInit {
 
 
   async profileload(id: string) {
+
     await this.http.get(`http://uicar.openode.io/users/` + id + '/info').subscribe((data: any) => {
       console.log(data);
+      this.cargado = false;
       this.profiledata = data;
     });
   }
@@ -65,6 +69,7 @@ export class ProfilePagePage implements AfterViewInit {
   async trayectosload(id: string) {
     await this.http.get(`http://uicar.openode.io/users/` + id + '/trayectos').subscribe((data2: any) => {
       // console.log(data2);
+      this.cargado = false;
       this.profiletrayectos = data2;
     });
   }

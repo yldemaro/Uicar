@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -10,34 +10,33 @@ import { Router } from '@angular/router';
   templateUrl: './modal-page.page.html',
   styleUrls: ['./modal-page.page.scss'],
 })
-export class ModalPagePage implements OnInit {
+export class ModalPagePage implements OnInit, OnDestroy {
 
   links: any;
   constructor(public modalcontroler: ModalController, private http: HttpClient
     , private aut: AngularFireAuth, private router: Router) {
-    this.linksload();
+
   }
 
   ngOnInit() {
+    this.linksload();
+  }
+
+  ngOnDestroy(){
+    
   }
   dismiss() {
     this.modalcontroler.dismiss();
   }
 
   async signOut() {
-
-
-
-
     const res = this.aut.auth.signOut().then(data => {
+      console.log(data);
       this.modalcontroler.dismiss();
       this.router.navigate(['login']);
-      sessionStorage.clear();
     }).catch(error => {
       console.log(error);
     });
-
-
   }
 
 
@@ -45,7 +44,6 @@ export class ModalPagePage implements OnInit {
 
     await this.http.get(`http://uicar.openode.io/links/`).subscribe((data: any) => {
       this.links = data;
-      console.log(this.links);
     });
   }
   gotopage(url: string) {

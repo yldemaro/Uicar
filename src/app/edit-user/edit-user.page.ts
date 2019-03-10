@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +9,7 @@ import { ServicesService } from '../services.service';
   templateUrl: './edit-user.page.html',
   styleUrls: ['./edit-user.page.scss'],
 })
-export class EditUserPage implements OnInit {
+export class EditUserPage implements OnInit, OnDestroy {
 
   uidprofile: string;
   uid: string;
@@ -23,30 +23,37 @@ export class EditUserPage implements OnInit {
   constructor(public router: Router, public active: ActivatedRoute, private aut: AngularFireAuth
     , private http: HttpClient, private cargaImagen: ServicesService) {
     console.log(this.cargaImagen.url);
-    
-    if (this.cargaImagen.url === undefined) {
-      this.cargaImagen.url = '/assets/icons/selectimage.png';
-    }
 
-    this.aut.authState
-      .subscribe(
-        user => {
-          this.uid = user.uid;
-          console.log(user.uid);
-        },
-        () => {
-          // this.rout.navigateByUrl('/login');
-        }
-      );
+    if (this.cargaImagen.url === undefined) {
+      this.cargaImagen.url = '/assets/icons/user.svg';
+    }
+  }
+
+  ngOnInit() {
+    this.logueado();
     this.cargaruid();
     this.zonasload();
   }
 
-  ngOnInit() {
+  logueado() {
+
+    this.aut.authState
+      .subscribe(
+        user => {
+          console.log(user.uid);
+          if (user.uid != null) {
+            this.uid = user.uid;
+          } else {
+            this.router.navigate([`/login`]);
+          }
+        }
+      );
   }
+
   gotouser() {
     this.router.navigate([`/profile/${this.uid}`]);
   }
+
   gotocreate() {
     this.router.navigate([`/create`]);
   }
@@ -64,8 +71,6 @@ export class EditUserPage implements OnInit {
   }
 
   async makepost() {
-    const fecha = Date.now();
-    console.log(fecha);
     const telf = '34' + this.telefono;
     const { nombre, zona, url } = this;
     console.log(nombre, telf, zona);
@@ -80,16 +85,18 @@ export class EditUserPage implements OnInit {
       uid: this.uid,
       img: this.cargaImagen.url,
       ubication: zona,
-      whatsapp: telf,
-      fecha: fecha
+      whatsapp: telf
     }).subscribe((response) => {
       console.log(response);
-      if (response) {
-        this.router.navigate([`home`]);
-      }
+      this.router.navigate([`home`]);
     }, error => {
       console.log(error);
+      this.router.navigate([`profile/${this.uid}`]);
     });
+  }
+
+  ngOnDestroy() {
+    console.log('se va');
   }
 
   cargarImagen() {
