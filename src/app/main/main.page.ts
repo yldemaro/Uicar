@@ -73,6 +73,22 @@ export class MainPage implements AfterViewInit, OnInit {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
       // console.log('tus cordenadas', this.lng, this.lat);
+
+      const lat = this.lat;
+      const lng = this.lng;
+
+      let myLatLng = { lat, lng };
+
+      this.map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: myLatLng
+      });
+
+      let marker = new google.maps.Marker({
+        position: myLatLng,
+        map: this.map
+      });
+
     }).catch((error) => {
       console.log('Error getting location', error);
     });
@@ -109,44 +125,43 @@ export class MainPage implements AfterViewInit, OnInit {
   }
 
   gotoprofile() {
-    this.router.navigate([`/profile/${this.uid}`]);
+    this.router.navigate([`profile/${this.uid}`]);
   }
 
   gotoinfoTrayecto(id: string) {
-    this.router.navigate([`/info-trayecto/${id}`]);
+    this.router.navigate([`info-trayecto/${id}`]);
   }
 
   gotoPerfil(id: string) {
-    this.router.navigate([`/profile/${id}`]);
+    this.router.navigate([`profile/${id}`]);
+  }
+  gotoall() {
+    this.router.navigate([`todos-trayectos/${this.zona}`]);
   }
 
 
 
 
   async profileload(id: string) {
-    await this.http.get(`http://uicar.openode.io/users/${id}/info`).subscribe((data: any) => {
+    await this._servicie.profile(id).subscribe((data: any) => {
       // console.log(data);
       this.profiledata = data;
     });
-    return this.profiledata;
   }
 
   async tablonload(id: string) {
 
-    await this.http.get(`http://uicar.openode.io/tablon/${id}/5`).subscribe((data: any) => {
-
+    await this._servicie.tablon(id).subscribe((data: any) => {
+      // console.log(data);
       this.tablondata = data;
-
     });
-    return this.tablondata;
   }
 
   async trayectosload(id: string) {
-    await this.http.get(`http://uicar.openode.io/zonas/${id}/3`).subscribe((data: any) => {
+    await this._servicie.trayectos(id).subscribe((data: any) => {
       // console.log(data);
       this.trayectos = data;
     });
-    return this.trayectos;
   }
 
 
@@ -171,15 +186,12 @@ export class MainPage implements AfterViewInit, OnInit {
           travelMode: 'DRIVING'
         }, (response, status) => {
           if (status === 'OK') {
-            console.log(response);
+            // console.log(response);
             this.directionsDisplay.setDirections(response);
 
             this.directionsDisplay = new google.maps.DirectionsRenderer({
               suppressBicyclingLayer: true
               // suppressMarkers: true
-            });
-            google.maps.event.addListener(response.routes[0].legs[0], 'click', function () {
-              console.log(response.routes[0].legs[0].end_address);
             });
             this.directionsDisplay.setMap(this.map);
 

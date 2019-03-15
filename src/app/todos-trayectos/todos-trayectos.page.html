@@ -1,0 +1,68 @@
+<ion-header no-border>
+    <ion-toolbar no-border>
+        <ion-buttons slot="start">
+            <ion-icon (click)="gotomain()" size="large" src="/assets/icons/left-arrow.svg" padding></ion-icon>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <h2 class="titulo">Todos trayectos {{ this.zona }}</h2>
+
+
+    <div text-center *ngIf="cargado === true">
+        <h3>Espere.......</h3>
+    </div>
+
+    <div text-center *ngIf="cargado === false">
+        
+        <div text-center *ngIf="(trayectos)?.length === 0">
+            <h3>Los trayectos estan vacios</h3>
+            <p>Aun no hay trayectos en esta zona</p>
+        </div>
+
+        <div text-center *ngIf="(trayectos)?.length != 0">
+
+            <br>
+            <ion-card style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos"
+                (click)="gotoinfoTrayecto(item.id)">
+                <ion-card-content style="height: 110px;border-radius: 100px !important">
+                    <ion-row class="carta">
+                        <ion-col size="5">
+                            {{ item.inicio }}
+                        </ion-col>
+                        <ion-col size="2">
+                            <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg">
+                            </ion-icon>
+                        </ion-col>
+                        <ion-col size="5">
+                            {{ item.destino }}
+                        </ion-col>
+
+                    </ion-row>
+
+                    <ion-row class="cartadesc">
+                        <ion-col size="5">
+                            {{ item.hora }} Salida
+                        </ion-col>
+                        <ion-col size="2">
+
+                        </ion-col>
+                        <ion-col style="font-size: 12px;text-align: center" size="3">
+                            {{ item.asientos }} <br>Asientos
+                        </ion-col>
+                        <ion-col size="2">
+                            <br>
+                            <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;"
+                                src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
+                        </ion-col>
+
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </div>
+
+
+
+</ion-content>

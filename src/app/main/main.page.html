@@ -27,15 +27,14 @@
     <div padding margin-bottom margin-top>
 
         <div text-center *ngIf="(trayectos)?.length === 0">
-            <h3>Los Proyectos estan vacios</h3>
-            <p>Crea una en tu perfil y empieza a disfrutar con tus amigos</p>
+            <h3>Los trayectos estan vacios</h3>
+            <p>Aun no hay trayectos en esta zona</p>
         </div>
 
         <div text-center *ngIf="(trayectos)?.length != 0">
             <h2 margin-top margin-bottom> Trayectos cerca tuyo </h2>
             <br>
-            <ion-card style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos"
-                (click)="gotoinfoTrayecto(item.id)">
+            <ion-card style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos" (click)="gotoinfoTrayecto(item.id)">
                 <ion-card-content style="height: 110px;border-radius: 100px !important">
                     <ion-row class="carta">
                         <ion-col size="5">
@@ -63,14 +62,15 @@
                         </ion-col>
                         <ion-col size="2">
                             <br>
-                            <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;"
-                                src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
+                            <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;" src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
                         </ion-col>
 
                     </ion-row>
                 </ion-card-content>
             </ion-card>
         </div>
+        <br>
+        <p style="font-weight: bold;color:#3B455A;text-decoration: underline;text-align: center" (click)="gotoall()">Más</p>
 
         <br>
 
@@ -89,7 +89,7 @@
 
         <div text-center *ngIf="(tablondata)?.length === 0">
             <h3>El tablón esta vacio</h3>
-            <p>"Haz un post y encuentra compañeros de viaje"</p>
+            <p style="font-weight: bold;color:#3B455A">Haz un post y encuentra compañeros de viaje</p>
         </div>
 
         <div *ngIf="(tablondata)?.length != 0">

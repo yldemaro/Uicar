@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Component } from '@angular/core';
-
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
@@ -22,7 +16,7 @@ declare var window;
 export class ServicesService {
   private CARPETA_IMAGENES = 'img';
   url: any;
- 
+
 
   private galleryOptions: CameraOptions = {
     quality: 50,
@@ -34,21 +28,11 @@ export class ServicesService {
     correctOrientation: true
   };
   constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
     public aut: AngularFireAuth,
     private rout: Router,
     private camera: Camera,
-  ) {
-    this.initializeApp();
-  }
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
+    private http: HttpClient
+  ) {}
 
   cargarImagen(data) {
     this.camera.getPicture(this.galleryOptions).then((imagePath) => {
@@ -119,5 +103,23 @@ export class ServicesService {
           });
         });
     });
+  }
+
+
+  trayectos(zonas: string) {
+    return this.http.get(`http://uicar.openode.io/zonas/${zonas}/3`);
+  }
+  tablon(tablon: string) {
+    return this.http.get(`http://uicar.openode.io/tablon/${tablon}/5`);
+  }
+  profile(id) {
+    return this.http.get(`http://uicar.openode.io/users/${id}/info`);
+  }
+  profileTrayectos(zona: string) {
+    return this.http.get(`http://uicar.openode.io/users/${zona}/trayectos`);
+  }
+
+  todoTrayectos(zona: string) {
+    return this.http.get(`http://uicar.openode.io/zonas/${zona}/30`);
   }
 }

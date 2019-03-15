@@ -41,7 +41,7 @@ export class AppComponent {
       .subscribe(
         user => {
           console.log(user.uid);
-          if (!user) {
+          if (user.uid === null) {
             this.rout.navigate(['/login']);
           } else {
             this.uid = user.uid;
