@@ -24,15 +24,15 @@ You can tested in Ionic devapp
 
 - Recarga de perfil constante    ✔️ 
 
-- Whatsapp enlace que se abrá bien
+- Whatsapp enlace que se abrá bien  ✔️ 
 
-- Mensaje de inicio de sesion 
+- Mensaje de inicio de sesion    ✔️ 
 
-- Mensaje de error formulario de editar usuario
+- Mensaje de error formulario de editar usuario .  ✔️ 
 
 - Editar usuario imagen    ✔️ 
-
-- Mapa
+ 
+- Mapa .  ✔️ 
 
 
 ## Repos :
