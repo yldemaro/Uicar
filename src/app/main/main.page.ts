@@ -7,6 +7,7 @@ import {ModalController, Platform} from '@ionic/angular';
 import {ModalPagePage} from '../modal-page/modal-page.page';
 import {ModalTablonPage} from '../modal-tablon/modal-tablon.page';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 
 declare var google;
@@ -41,7 +42,11 @@ export class MainPage implements AfterViewInit, OnInit {
 
     constructor(private aut: AngularFireAuth, public modalController: ModalController,
                 private router: Router, public _servicie: ServicesService, private http: HttpClient,
-                private geolocation: Geolocation) {
+                private geolocation: Geolocation, private statusBar: StatusBar) {
+
+      // let status bar overlay webview
+    this.statusBar.overlaysWebView(true);
+    this.statusBar.backgroundColorByHexString('#ffffff');
     }
 
     ngOnInit() {

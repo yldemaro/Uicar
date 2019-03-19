@@ -26,7 +26,7 @@ export class CreatePage implements AfterViewInit {
 
   horas = ['00:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00',
     '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
-    '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00',];
+    '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'];
 
 
 
@@ -57,7 +57,9 @@ export class CreatePage implements AfterViewInit {
 
   async zonasload() {
 
-    await this.http.get(`https://apiv1.geoapi.es/municipios?CPRO=28&type=JSON&key=&sandbox=1`).subscribe((data: any) => {
+    await this.http
+    .get(`https://apiv1.geoapi.es/municipios?CPRO=28&type=JSON&key=ee1d04ad4e6bf0c30ac856d457c3cf25b8f342061277ba5a76f384cba4d06dd6`)
+    .subscribe((data: any) => {
       // console.log(data.data);
       this.zones = data.data;
       console.log(this.zones);

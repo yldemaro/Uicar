@@ -17,13 +17,18 @@ export class AppComponent {
   uid: any;
 
   constructor(
+    private statusBar: StatusBar,
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
     public aut: AngularFireAuth,
     private rout: Router
   ) {
     this.initializeApp();
+      // let status bar overlay webview
+    this.statusBar.overlaysWebView(true);
+
+    // set status bar to white
+    this.statusBar.backgroundColorByHexString('#ffffff');
   }
 
   initializeApp() {
@@ -50,5 +55,7 @@ export class AppComponent {
         }
       );
   }
+
+
 
 }

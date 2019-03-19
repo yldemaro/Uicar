@@ -16,20 +16,26 @@
 
     <div padding>
 
-        <br><br>
-        <h2>Informacion</h2>
+        <h2>Información</h2>
         <div *ngFor="let item of trayectodata">
 
-            <ion-icon style="font-size: 64px;margin-left: 40%;margin-right: 40%;width: 20%;"
-                src="/assets/icons/{{ item.vehiculo }}.svg"></ion-icon>
+
+
+            <ion-icon style="font-size: 64px;margin-left: 40%;margin-right: 40%;width: 20%;" src="/assets/icons/{{ item.vehiculo }}.svg"></ion-icon>
 
 
             <h1>Salida : {{ item.inicio }}</h1>
             <h1>Destino : {{ item.destino }}</h1>
             <h1 margin-bottom>Hora : {{ item.hora }}</h1>
 
-            <div text-center margin-top margin-bottom (click)="gotoprofile(item.uid)"
-                class="tc flex jusify-center align-center flex-wrap w-100">
+            <ion-card>
+                <br>
+                <ion-card-content style="font-size:16px;color:#3B455A;">
+                    {{ item.info }}
+                </ion-card-content>
+            </ion-card>
+
+            <div text-center margin-top margin-bottom (click)="gotoprofile(item.uid)" class="tc flex jusify-center align-center flex-wrap w-100">
                 <div class="w-100 tc flex align-center justify-center">
                     <button class="buttone google flex justify-center align-center"><img src="assets/icons/avatar.svg"
                             class="flex self-center pr2"> Ir Perfil de Usuario</button>
