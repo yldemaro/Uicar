@@ -20,19 +20,7 @@ You can tested in Ionic devapp
 
 <img src="https://github.com/davidbarrero38/Uicar/blob/master/src/assets/icons/canvas2.png?raw=true">
 
-## TODO :
 
-- Recarga de perfil constante    ✔️ 
-
-- Whatsapp enlace que se abrá bien  ✔️ 
-
-- Mensaje de inicio de sesion    ✔️ 
-
-- Mensaje de error formulario de editar usuario .  ✔️ 
-
-- Editar usuario imagen    ✔️ 
- 
-- Mapa .  ✔️ 
 
 
 ## Repos :
