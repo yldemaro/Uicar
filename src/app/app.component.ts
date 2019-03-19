@@ -42,7 +42,7 @@ export class AppComponent {
         user => {
           console.log(user.uid);
           if (user.uid === null) {
-            this.rout.navigate(['/login']);
+            this.rout.navigate(['login']);
           } else {
             this.uid = user.uid;
             this.rout.navigate([`home`]);

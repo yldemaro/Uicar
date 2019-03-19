@@ -85,11 +85,6 @@
     <plugin name="cordova-plugin-advanced-http" spec="2.0.4" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <plugin name="cordova-plugin-geolocation" spec="4.0.1" />
-    <plugin name="cordova-plugin-googleplus" spec="^7.0.0">
-        <variable name="REVERSED_CLIENT_ID" value="465417573805-7a995r9tf826jnoa3at7qpq3gkn4m8g1.apps.googleusercontent.com" />
-        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
-    </plugin>
-    <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
     <engine name="android" spec="7.1.4" />
     <engine name="ios" spec="4.5.5" />
 </widget>

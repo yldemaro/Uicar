@@ -4,9 +4,6 @@ import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services.service';
 import { AlertController, LoadingController } from '@ionic/angular';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +19,7 @@ export class LoginPage {
     public rout: Router,
     public service: ServicesService,
     public alertController: AlertController,
-    private googlePlus: GooglePlus,
-    public loadingController: LoadingController,
-    private nativeStorage: NativeStorage, ) {
+    public loadingController: LoadingController, ) {
 
   }
 
@@ -46,33 +41,15 @@ export class LoginPage {
 
   async loginGmail() {
     const loading = await this.loadingController.create({
-      message: 'Please wait...'
+      message: 'No se encuentra disponible'
     });
     this.presentLoading(loading);
 
-    this.googlePlus.login({
-      'scopes': '', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-      'webClientId': environment.googleWebClientId, // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
-      'offline': true // Optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
-    })
-      .then(user => {
-        loading.dismiss();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 3000);
 
-        this.nativeStorage.setItem('google_user', {
-          name: user.displayName,
-          email: user.email,
-          picture: user.imageUrl
-        })
-          .then(() => {
-            this.rout.navigate(['home']);
-          }, error => {
-            console.log(error);
-          });
-        loading.dismiss();
-      }, err => {
-        console.log(err)
-        loading.dismiss();
-      });
+
   }
 
   goRegister() {

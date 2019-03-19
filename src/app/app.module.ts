@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 // firebase
 import Config from './firebase';
@@ -20,7 +19,6 @@ import { ModalPagePage } from './modal-page/modal-page.page';
 
 //nativo
 import { Camera } from '@ionic-native/Camera/ngx';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,8 +34,6 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
   providers: [
     StatusBar,
     Camera,
-    GooglePlus,
-    NativeStorage,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

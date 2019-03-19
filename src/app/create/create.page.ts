@@ -57,9 +57,10 @@ export class CreatePage implements AfterViewInit {
 
   async zonasload() {
 
-    await this.http.get(`http://uicar.openode.io/zonas/`).subscribe((data: any) => {
-      this.zones = data;
-      // console.log(this.zones);
+    await this.http.get(`https://apiv1.geoapi.es/municipios?CPRO=28&type=JSON&key=&sandbox=1`).subscribe((data: any) => {
+      // console.log(data.data);
+      this.zones = data.data;
+      console.log(this.zones);
     });
   }
   gotomain() {

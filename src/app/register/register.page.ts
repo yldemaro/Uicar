@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +16,9 @@ export class RegisterPage {
   cpassword: string;
 
   constructor(public afr: AngularFireAuth,
-    public rout: Router, public alertController: AlertController) { }
+    public rout: Router,
+    public alertController: AlertController,
+    public loadingController: LoadingController, ) { }
 
   async register() {
 
@@ -37,13 +39,14 @@ export class RegisterPage {
 
   async registerGmail() {
 
-    try {
-      const res = await this.afr.auth.signInWithPopup(new auth.GoogleAuthProvider());
-      console.log(res);
-      this.rout.navigate(['/home']);
-    } catch (error) {
-      this.errorServ();
-    }
+    const loading = await this.loadingController.create({
+      message: 'No se encuentra disponible'
+    });
+    this.presentLoading(loading);
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 3000);
 
 
   }
@@ -67,5 +70,9 @@ export class RegisterPage {
     });
 
     await alert.present();
+  }
+
+  async presentLoading(loading) {
+    return await loading.present();
   }
 }
