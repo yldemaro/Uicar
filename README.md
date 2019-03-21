@@ -12,7 +12,7 @@ Un aplicacion para compartir coche en trayectos cortos y cotidianos, encuentra t
 
 * ionic serve 
 
-You can tested in Ionic devapp
+
 
 
 ## Desing
