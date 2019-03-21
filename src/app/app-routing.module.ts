@@ -7,7 +7,10 @@ const routes: Routes = [
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'modal-page', loadChildren: './modal-page/modal-page.module#ModalPagePageModule' },
   { path: 'profile/:id', loadChildren: './profile-page/profile-page.module#ProfilePagePageModule' },
-  { path: 'home', loadChildren: './main/main.module#MainPageModule' },
+  {
+    path: 'home', 
+    loadChildren: './main/main.module#MainPageModule'
+  },
   { path: 'edituser/:id', loadChildren: './edit-user/edit-user.module#EditUserPageModule' },
   { path: 'create', loadChildren: './create/create.module#CreatePageModule' },
   { path: 'modal-tablon', loadChildren: './modal-tablon/modal-tablon.module#ModalTablonPageModule' },
@@ -18,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

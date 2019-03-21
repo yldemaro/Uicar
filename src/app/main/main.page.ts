@@ -42,12 +42,7 @@ export class MainPage implements AfterViewInit, OnInit {
 
     constructor(private aut: AngularFireAuth, public modalController: ModalController,
                 private router: Router, public _servicie: ServicesService, private http: HttpClient,
-                private geolocation: Geolocation, private statusBar: StatusBar) {
-
-      // let status bar overlay webview
-    this.statusBar.overlaysWebView(true);
-    this.statusBar.backgroundColorByHexString('#ffffff');
-    }
+                private geolocation: Geolocation, private statusBar: StatusBar) {}
 
     ngOnInit() {
         this.logueado();
@@ -185,23 +180,6 @@ export class MainPage implements AfterViewInit, OnInit {
                             // suppressMarkers: true
                         });
                         var myRoute = response.routes[0].legs[0];
-                        /*for (var a = 0; a < myRoute.steps.length; a++) {
-                            var marker = new google.maps.Marker({
-                                position: myRoute.steps[a].start_point,
-                                map: this.map,
-                                id: data[i].id,
-                                zIndex: 999999
-                            });
-                            this.attachInstructionText(marker, myRoute.steps[i].instructions);
-                            var marker = new google.maps.Marker({
-                                position: myRoute.steps[a].end_point,
-                                map: this.map,
-                                id: data[i].id,
-                                zIndex: 999999
-                            });
-                            this.attachInstructionText(marker, myRoute.steps[i].instructions);
-                            waypoint_markers[a] = marker;
-                        }*/
                         var marker = new google.maps.Marker({
                             position: myRoute.steps[0].start_point,
                             map: this.map,

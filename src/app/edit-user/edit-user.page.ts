@@ -64,19 +64,11 @@ export class EditUserPage implements OnInit, OnDestroy {
   }
 
   async zonasload() {
-
-
-    await this.http
-    .get(`https://apiv1.geoapi.es/municipios?CPRO=28&type=JSON&key=ee1d04ad4e6bf0c30ac856d457c3cf25b8f342061277ba5a76f384cba4d06dd6`)
-    .subscribe((data: any) => {
-      // console.log(data.data);
-      this.zones = data.data;
-      // console.log(this.zones);
+    
+    await this.http.get(`http://uicar.openode.io/zonas/`).subscribe((data: any) => {
+      this.zones = data;
     });
 
-    // await this.http.get(`http://uicar.openode.io/zonas/`).subscribe((data: any) => {
-    //   this.zones = data;
-    // });
   }
 
   async makepost() {

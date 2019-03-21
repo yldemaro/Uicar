@@ -1,0 +1,1200 @@
+{
+    "update_date": "2016.07",
+    "size": 179,
+    "data": [
+        {
+            "CMUM": "001",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ACEBEDA (LA)"
+        },
+        {
+            "CMUM": "002",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "AJALVIR"
+        },
+        {
+            "CMUM": "003",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ALAMEDA DEL VALLE"
+        },
+        {
+            "CMUM": "004",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ÁLAMO (EL)"
+        },
+        {
+            "CMUM": "005",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ALCALÁ DE HENARES"
+        },
+        {
+            "CMUM": "006",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ALCOBENDAS"
+        },
+        {
+            "CMUM": "007",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ALCORCÓN"
+        },
+        {
+            "CMUM": "008",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ALDEA DEL FRESNO"
+        },
+        {
+            "CMUM": "009",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ALGETE"
+        },
+        {
+            "CMUM": "010",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ALPEDRETE"
+        },
+        {
+            "CMUM": "011",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "AMBITE"
+        },
+        {
+            "CMUM": "012",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ANCHUELO"
+        },
+        {
+            "CMUM": "013",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ARANJUEZ"
+        },
+        {
+            "CMUM": "014",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ARGANDA DEL REY"
+        },
+        {
+            "CMUM": "015",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ARROYOMOLINOS"
+        },
+        {
+            "CMUM": "016",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ATAZAR (EL)"
+        },
+        {
+            "CMUM": "017",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BATRES"
+        },
+        {
+            "CMUM": "018",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BECERRIL DE LA SIERRA"
+        },
+        {
+            "CMUM": "019",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BELMONTE DE TAJO"
+        },
+        {
+            "CMUM": "021",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BERRUECO (EL)"
+        },
+        {
+            "CMUM": "020",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BERZOSA DEL LOZOYA"
+        },
+        {
+            "CMUM": "022",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BOADILLA DEL MONTE"
+        },
+        {
+            "CMUM": "023",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BOALO (EL)"
+        },
+        {
+            "CMUM": "024",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BRAOJOS"
+        },
+        {
+            "CMUM": "025",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BREA DE TAJO"
+        },
+        {
+            "CMUM": "026",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BRUNETE"
+        },
+        {
+            "CMUM": "027",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BUITRAGO DEL LOZOYA"
+        },
+        {
+            "CMUM": "028",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BUSTARVIEJO"
+        },
+        {
+            "CMUM": "029",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CABANILLAS DE LA SIERRA"
+        },
+        {
+            "CMUM": "030",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CABRERA (LA)"
+        },
+        {
+            "CMUM": "031",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CADALSO DE LOS VIDRIOS"
+        },
+        {
+            "CMUM": "032",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CAMARMA DE ESTERUELAS"
+        },
+        {
+            "CMUM": "033",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CAMPO REAL"
+        },
+        {
+            "CMUM": "034",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CANENCIA"
+        },
+        {
+            "CMUM": "035",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CARABAÑA"
+        },
+        {
+            "CMUM": "036",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CASARRUBUELOS"
+        },
+        {
+            "CMUM": "037",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CENICIENTOS"
+        },
+        {
+            "CMUM": "038",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CERCEDILLA"
+        },
+        {
+            "CMUM": "039",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CERVERA DE BUITRAGO"
+        },
+        {
+            "CMUM": "051",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CHAPINERÍA"
+        },
+        {
+            "CMUM": "052",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CHINCHÓN"
+        },
+        {
+            "CMUM": "040",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CIEMPOZUELOS"
+        },
+        {
+            "CMUM": "041",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "COBEÑA"
+        },
+        {
+            "CMUM": "046",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "COLLADO MEDIANO"
+        },
+        {
+            "CMUM": "047",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "COLLADO VILLALBA"
+        },
+        {
+            "CMUM": "043",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "COLMENAR DE OREJA"
+        },
+        {
+            "CMUM": "042",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "COLMENAR DEL ARROYO"
+        },
+        {
+            "CMUM": "045",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "COLMENAR VIEJO"
+        },
+        {
+            "CMUM": "044",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "COLMENAREJO"
+        },
+        {
+            "CMUM": "048",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CORPA"
+        },
+        {
+            "CMUM": "049",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "COSLADA"
+        },
+        {
+            "CMUM": "050",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CUBAS DE LA SAGRA"
+        },
+        {
+            "CMUM": "053",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "DAGANZO DE ARRIBA"
+        },
+        {
+            "CMUM": "054",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ESCORIAL (EL)"
+        },
+        {
+            "CMUM": "055",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ESTREMERA"
+        },
+        {
+            "CMUM": "056",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "FRESNEDILLAS DE LA OLIVA"
+        },
+        {
+            "CMUM": "057",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "FRESNO DE TOROTE"
+        },
+        {
+            "CMUM": "058",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "FUENLABRADA"
+        },
+        {
+            "CMUM": "059",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "FUENTE EL SAZ DE JARAMA"
+        },
+        {
+            "CMUM": "060",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "FUENTIDUEÑA DE TAJO"
+        },
+        {
+            "CMUM": "061",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "GALAPAGAR"
+        },
+        {
+            "CMUM": "062",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "GARGANTA DE LOS MONTES"
+        },
+        {
+            "CMUM": "063",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "GARGANTILLA DEL LOZOYA Y PINILLA DE BUITRAGO"
+        },
+        {
+            "CMUM": "064",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "GASCONES"
+        },
+        {
+            "CMUM": "065",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "GETAFE"
+        },
+        {
+            "CMUM": "066",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "GRIÑÓN"
+        },
+        {
+            "CMUM": "067",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "GUADALIX DE LA SIERRA"
+        },
+        {
+            "CMUM": "068",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "GUADARRAMA"
+        },
+        {
+            "CMUM": "069",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "HIRUELA (LA)"
+        },
+        {
+            "CMUM": "070",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "HORCAJO DE LA SIERRA-AOSLOS"
+        },
+        {
+            "CMUM": "071",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "HORCAJUELO DE LA SIERRA"
+        },
+        {
+            "CMUM": "072",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "HOYO DE MANZANARES"
+        },
+        {
+            "CMUM": "073",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "HUMANES DE MADRID"
+        },
+        {
+            "CMUM": "074",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "LEGANÉS"
+        },
+        {
+            "CMUM": "075",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "LOECHES"
+        },
+        {
+            "CMUM": "076",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "LOZOYA"
+        },
+        {
+            "CMUM": "901",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "LOZOYUELA-NAVAS-SIETEIGLESIAS"
+        },
+        {
+            "CMUM": "078",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MADARCOS"
+        },
+        {
+            "CMUM": "079",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MADRID"
+        },
+        {
+            "CMUM": "080",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MAJADAHONDA"
+        },
+        {
+            "CMUM": "082",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MANZANARES EL REAL"
+        },
+        {
+            "CMUM": "083",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MECO"
+        },
+        {
+            "CMUM": "084",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MEJORADA DEL CAMPO"
+        },
+        {
+            "CMUM": "085",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MIRAFLORES DE LA SIERRA"
+        },
+        {
+            "CMUM": "086",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MOLAR (EL)"
+        },
+        {
+            "CMUM": "087",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MOLINOS (LOS)"
+        },
+        {
+            "CMUM": "088",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MONTEJO DE LA SIERRA"
+        },
+        {
+            "CMUM": "089",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MORALEJA DE ENMEDIO"
+        },
+        {
+            "CMUM": "090",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MORALZARZAL"
+        },
+        {
+            "CMUM": "091",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MORATA DE TAJUÑA"
+        },
+        {
+            "CMUM": "092",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MÓSTOLES"
+        },
+        {
+            "CMUM": "093",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "NAVACERRADA"
+        },
+        {
+            "CMUM": "094",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "NAVALAFUENTE"
+        },
+        {
+            "CMUM": "095",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "NAVALAGAMELLA"
+        },
+        {
+            "CMUM": "096",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "NAVALCARNERO"
+        },
+        {
+            "CMUM": "097",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "NAVARREDONDA Y SAN MAMÉS"
+        },
+        {
+            "CMUM": "099",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "NAVAS DEL REY"
+        },
+        {
+            "CMUM": "100",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "NUEVO BAZTÁN"
+        },
+        {
+            "CMUM": "101",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "OLMEDA DE LAS FUENTES"
+        },
+        {
+            "CMUM": "102",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ORUSCO DE TAJUÑA"
+        },
+        {
+            "CMUM": "104",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PARACUELLOS DE JARAMA"
+        },
+        {
+            "CMUM": "106",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PARLA"
+        },
+        {
+            "CMUM": "107",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PATONES"
+        },
+        {
+            "CMUM": "108",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PEDREZUELA"
+        },
+        {
+            "CMUM": "109",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PELAYOS DE LA PRESA"
+        },
+        {
+            "CMUM": "110",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PERALES DE TAJUÑA"
+        },
+        {
+            "CMUM": "111",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PEZUELA DE LAS TORRES"
+        },
+        {
+            "CMUM": "112",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PINILLA DEL VALLE"
+        },
+        {
+            "CMUM": "113",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PINTO"
+        },
+        {
+            "CMUM": "114",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PIÑUÉCAR-GANDULLAS"
+        },
+        {
+            "CMUM": "115",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "POZUELO DE ALARCÓN"
+        },
+        {
+            "CMUM": "116",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "POZUELO DEL REY"
+        },
+        {
+            "CMUM": "117",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PRÁDENA DEL RINCÓN"
+        },
+        {
+            "CMUM": "118",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PUEBLA DE LA SIERRA"
+        },
+        {
+            "CMUM": "902",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PUENTES VIEJAS"
+        },
+        {
+            "CMUM": "119",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "QUIJORNA"
+        },
+        {
+            "CMUM": "120",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "RASCAFRÍA"
+        },
+        {
+            "CMUM": "121",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "REDUEÑA"
+        },
+        {
+            "CMUM": "122",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "RIBATEJADA"
+        },
+        {
+            "CMUM": "123",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "RIVAS-VACIAMADRID"
+        },
+        {
+            "CMUM": "124",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ROBLEDILLO DE LA JARA"
+        },
+        {
+            "CMUM": "125",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ROBLEDO DE CHAVELA"
+        },
+        {
+            "CMUM": "126",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ROBREGORDO"
+        },
+        {
+            "CMUM": "127",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ROZAS DE MADRID (LAS)"
+        },
+        {
+            "CMUM": "128",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ROZAS DE PUERTO REAL"
+        },
+        {
+            "CMUM": "129",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SAN AGUSTÍN DEL GUADALIX"
+        },
+        {
+            "CMUM": "130",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SAN FERNANDO DE HENARES"
+        },
+        {
+            "CMUM": "131",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SAN LORENZO DE EL ESCORIAL"
+        },
+        {
+            "CMUM": "132",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SAN MARTÍN DE LA VEGA"
+        },
+        {
+            "CMUM": "133",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SAN MARTÍN DE VALDEIGLESIAS"
+        },
+        {
+            "CMUM": "134",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SAN SEBASTIÁN DE LOS REYES"
+        },
+        {
+            "CMUM": "135",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SANTA MARÍA DE LA ALAMEDA"
+        },
+        {
+            "CMUM": "136",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SANTORCAZ"
+        },
+        {
+            "CMUM": "137",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SANTOS DE LA HUMOSA (LOS)"
+        },
+        {
+            "CMUM": "138",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SERNA DEL MONTE (LA)"
+        },
+        {
+            "CMUM": "140",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SERRANILLOS DEL VALLE"
+        },
+        {
+            "CMUM": "141",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SEVILLA LA NUEVA"
+        },
+        {
+            "CMUM": "143",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SOMOSIERRA"
+        },
+        {
+            "CMUM": "144",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SOTO DEL REAL"
+        },
+        {
+            "CMUM": "145",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TALAMANCA DE JARAMA"
+        },
+        {
+            "CMUM": "146",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TIELMES"
+        },
+        {
+            "CMUM": "147",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TITULCIA"
+        },
+        {
+            "CMUM": "148",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TORREJÓN DE ARDOZ"
+        },
+        {
+            "CMUM": "149",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TORREJÓN DE LA CALZADA"
+        },
+        {
+            "CMUM": "150",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TORREJÓN DE VELASCO"
+        },
+        {
+            "CMUM": "151",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TORRELAGUNA"
+        },
+        {
+            "CMUM": "152",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TORRELODONES"
+        },
+        {
+            "CMUM": "153",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TORREMOCHA DE JARAMA"
+        },
+        {
+            "CMUM": "154",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TORRES DE LA ALAMEDA"
+        },
+        {
+            "CMUM": "903",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TRES CANTOS"
+        },
+        {
+            "CMUM": "155",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDARACETE"
+        },
+        {
+            "CMUM": "156",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDEAVERO"
+        },
+        {
+            "CMUM": "157",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDELAGUNA"
+        },
+        {
+            "CMUM": "158",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDEMANCO"
+        },
+        {
+            "CMUM": "159",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDEMAQUEDA"
+        },
+        {
+            "CMUM": "160",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDEMORILLO"
+        },
+        {
+            "CMUM": "161",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDEMORO"
+        },
+        {
+            "CMUM": "162",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDEOLMOS-ALALPARDO"
+        },
+        {
+            "CMUM": "163",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDEPIÉLAGOS"
+        },
+        {
+            "CMUM": "164",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDETORRES DE JARAMA"
+        },
+        {
+            "CMUM": "165",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALDILECHA"
+        },
+        {
+            "CMUM": "166",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VALVERDE DE ALCALÁ"
+        },
+        {
+            "CMUM": "167",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VELILLA DE SAN ANTONIO"
+        },
+        {
+            "CMUM": "168",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VELLÓN (EL)"
+        },
+        {
+            "CMUM": "169",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VENTURADA"
+        },
+        {
+            "CMUM": "171",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLA DEL PRADO"
+        },
+        {
+            "CMUM": "170",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLACONEJOS"
+        },
+        {
+            "CMUM": "172",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLALBILLA"
+        },
+        {
+            "CMUM": "173",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLAMANRIQUE DE TAJO"
+        },
+        {
+            "CMUM": "174",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLAMANTA"
+        },
+        {
+            "CMUM": "175",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLAMANTILLA"
+        },
+        {
+            "CMUM": "176",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLANUEVA DE LA CAÑADA"
+        },
+        {
+            "CMUM": "178",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLANUEVA DE PERALES"
+        },
+        {
+            "CMUM": "177",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLANUEVA DEL PARDILLO"
+        },
+        {
+            "CMUM": "179",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLAR DEL OLMO"
+        },
+        {
+            "CMUM": "180",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLAREJO DE SALVANÉS"
+        },
+        {
+            "CMUM": "181",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLAVICIOSA DE ODÓN"
+        },
+        {
+            "CMUM": "182",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLAVIEJA DEL LOZOYA"
+        },
+        {
+            "CMUM": "183",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ZARZALEJO"
+        },
+        {
+            "CMUM": "184",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SALAMANCA BARRIO"
+        },
+        {
+            "CMUM": "185",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ARGANZUELA"
+        },
+        {
+            "CMUM": "186",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "RETIRO MADRID"
+        },
+        {
+            "CMUM": "187",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CENTRO MADRID"
+        },
+        {
+            "CMUM": "188",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CHAMARTIN"
+        },
+        {
+            "CMUM": "189",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "TETUÁN MADRID"
+        },
+        {
+            "CMUM": "190",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "PLAZA CASTILLA"
+        },
+        {
+            "CMUM": "191",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CHAMBERÍ"
+        },
+        {
+            "CMUM": "192",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "FUENCARRAL"
+        },
+        {
+            "CMUM": "193",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MONCLOA"
+        },
+        {
+            "CMUM": "194",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "LA LATINA"
+        },
+        {
+            "CMUM": "195",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CARABANCHEL"
+        },
+        {
+            "CMUM": "196",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "MORATALAZ"
+        },
+        {
+            "CMUM": "197",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "CIUDAD LINEAL"
+        },
+        {
+            "CMUM": "198",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "HORTALEZA"
+        },
+        {
+            "CMUM": "199",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VILLAVERDE"
+        },
+        {
+            "CMUM": "200",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "VICÁLVARO"
+        },
+        {
+            "CMUM": "201",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "SAN BLAS MADRID"
+        },
+        {
+            "CMUM": "202",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "BARAJAS"
+        },
+        {
+            "CMUM": "184",
+            "CPRO": "28",
+            "CUN": "0000000",
+            "DMUN50": "ARGANDA"
+        }
+    ]
+}

@@ -24,16 +24,12 @@ export class AppComponent {
     private rout: Router
   ) {
     this.initializeApp();
-      // let status bar overlay webview
-    this.statusBar.overlaysWebView(true);
-
-    // set status bar to white
-    this.statusBar.backgroundColorByHexString('#ffffff');
+    // let status bar overlay webview
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      this.statusBar.hide();
       this.splashScreen.hide();
       this.logueado();
     });
@@ -45,13 +41,14 @@ export class AppComponent {
     this.aut.authState
       .subscribe(
         user => {
-          console.log(user.uid);
-          if (user.uid === null) {
-            this.rout.navigate(['login']);
+          if (user) {
+            this.rout.navigate(['home']);
           } else {
-            this.uid = user.uid;
-            this.rout.navigate([`home`]);
+            this.rout.navigate(['login']);
           }
+        },
+        () => {
+          this.rout.navigate(['login']);
         }
       );
   }

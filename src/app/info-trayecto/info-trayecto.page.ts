@@ -33,26 +33,19 @@ export class InfoTrayectoPage implements OnInit {
   constructor(public router: Router, public active: ActivatedRoute, private http: HttpClient,
     private geolocation: Geolocation, private aut: AngularFireAuth) {
 
-    this.logueado();
+
     this.id = this.active.snapshot.paramMap.get('id');
+  }
+
+  ngOnInit() {
+
+    this.logueado();
+    this.posicion();
+    this.trayectoload(this.id);
 
     setTimeout(() => {
       this.rutas();
     }, 2000);
-
-
-    this.trayectoload(this.id);
-
-  }
-
-  ngOnInit() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.lat = resp.coords.latitude;
-      this.lng = resp.coords.longitude;
-      console.log('tus cordenadas', this.lng, this.lat);
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
   }
 
   logueado() {
@@ -66,6 +59,16 @@ export class InfoTrayectoPage implements OnInit {
           }
         }
       );
+  }
+
+  posicion() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.lat = resp.coords.latitude;
+      this.lng = resp.coords.longitude;
+      console.log('tus cordenadas', this.lng, this.lat);
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
   return() {
