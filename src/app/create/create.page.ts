@@ -56,7 +56,6 @@ export class CreatePage implements AfterViewInit {
   }
 
   async zonasload() {
-    
     await this.http.get(`http://uicar.openode.io/zonas/`).subscribe((data: any) => {
       this.zones = data;
     });

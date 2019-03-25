@@ -64,7 +64,6 @@ export class EditUserPage implements OnInit, OnDestroy {
   }
 
   async zonasload() {
-    
     await this.http.get(`http://uicar.openode.io/zonas/`).subscribe((data: any) => {
       this.zones = data;
     });

@@ -93,12 +93,12 @@ export class MainPage implements AfterViewInit, OnInit {
         return this.uid;
     }
 
-    async presentModal() {
-        const modal = await this.modalController.create({
-            component: ModalPagePage,
-        });
-        return await modal.present();
-    }
+    // async presentModal() {
+    //     const modal = await this.modalController.create({
+    //         component: ModalPagePage,
+    //     });
+    //     return await modal.present();
+    // }
 
     async presentModal2() {
         const modal2 = await this.modalController.create({
@@ -122,6 +122,9 @@ export class MainPage implements AfterViewInit, OnInit {
 
     gotoall() {
         this.router.navigate([`/todos-trayectos/${this.zona}`]);
+    }
+    gotosearch() {
+        this.router.navigate([`/search/`]);
     }
 
 
@@ -171,7 +174,7 @@ export class MainPage implements AfterViewInit, OnInit {
                     destination: data[i].destino,
                     travelMode: 'DRIVING'
                 }, (response, status) => {
-                    let waypoint_markers = [];
+                    const waypoint_markers = [];
                     if (status === 'OK') {
                         this.directionsDisplay.setDirections(response);
 
@@ -179,15 +182,15 @@ export class MainPage implements AfterViewInit, OnInit {
                             suppressBicyclingLayer: true
                             // suppressMarkers: true
                         });
-                        var myRoute = response.routes[0].legs[0];
-                        var marker = new google.maps.Marker({
+                        const myRoute = response.routes[0].legs[0];
+                        const marker = new google.maps.Marker({
                             position: myRoute.steps[0].start_point,
                             map: this.map,
                             id: data[i].id,
                             zIndex: 999999
                         });
                         this.attachInstructionText(marker);
-                        var marker1 = new google.maps.Marker({
+                        const marker1 = new google.maps.Marker({
                             position: myRoute.steps[myRoute.steps.length - 1].end_point,
                             map: this.map,
                             id: data[i].id,
@@ -204,7 +207,7 @@ export class MainPage implements AfterViewInit, OnInit {
     }
 
     attachInstructionText(marker) {
-        let self = this;
+        const self = this;
         google.maps.event.addListener(marker, 'click', function () {
             self.gotoinfoTrayecto(this.id);
         });

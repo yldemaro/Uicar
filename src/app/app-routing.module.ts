@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'modal-tablon', loadChildren: './modal-tablon/modal-tablon.module#ModalTablonPageModule' },
   { path: 'info-trayecto/:id', loadChildren: './info-trayecto/info-trayecto.module#InfoTrayectoPageModule' },
   { path: 'todos-trayectos/:zona', loadChildren: './todos-trayectos/todos-trayectos.module#TodosTrayectosPageModule' },
+  { path: 'search', loadChildren: './search/search.module#SearchPageModule' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

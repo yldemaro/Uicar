@@ -5,14 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MainPage } from './main.page';
-import { ModalPagePage } from '../modal-page/modal-page.page';
-import { ModalTablonPage } from '../modal-tablon/modal-tablon.page';
+import { SearchPage } from './search.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: MainPage
+    component: SearchPage
   }
 ];
 
@@ -23,7 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-   declarations: [MainPage  , ModalTablonPage],
-  entryComponents: [ ModalTablonPage ]
+  declarations: [SearchPage]
 })
-export class MainPageModule {}
+export class SearchPageModule {}
