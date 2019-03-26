@@ -11,21 +11,29 @@
 
 
     <div text-center *ngIf="cargado === true">
-        <h3>Espere.......</h3>
+        <h3>Cargando.......</h3>
     </div>
 
     <div text-center *ngIf="cargado === false">
-        
+
         <div text-center *ngIf="(trayectos)?.length === 0">
-            <h3>Los trayectos estan vacios</h3>
-            <p>Aun no hay trayectos en esta zona</p>
+            <br>
+            <br>
+
+            <img class="notrayect" src="assets/map.svg">
+            <br>
+            <br>
+            <br>
+
+            <h3 style="color: #E45454;" class="notrayecto">No se a encontrado ningun trayecto!</h3>
+            <br>
+
         </div>
 
         <div text-center *ngIf="(trayectos)?.length != 0">
 
             <br>
-            <ion-card style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos"
-                (click)="gotoinfoTrayecto(item.id)">
+            <ion-card style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos" (click)="gotoinfoTrayecto(item.id)">
                 <ion-card-content style="height: 110px;border-radius: 100px !important">
                     <ion-row class="carta">
                         <ion-col size="5">
@@ -53,8 +61,7 @@
                         </ion-col>
                         <ion-col size="2">
                             <br>
-                            <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;"
-                                src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
+                            <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;" src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
                         </ion-col>
 
                     </ion-row>

@@ -3,6 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ServicesService } from '../services.service';
+
+import {ModalController, Platform} from '@ionic/angular';
+import {ModalPagePage} from '../modal-page/modal-page.page';
+import {ModalTablonPage} from '../modal-tablon/modal-tablon.page';
+import {Geolocation} from '@ionic-native/geolocation/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.page.html',
@@ -20,7 +26,7 @@ export class ProfilePagePage implements AfterViewInit, OnInit {
 
 
   constructor(private http: HttpClient, private aut: AngularFireAuth,
-    private router: Router, public active: ActivatedRoute, private auth: ServicesService) {
+    private router: Router, public active: ActivatedRoute, private auth: ServicesService , public modalController: ModalController) {
     this.uid = this.active.snapshot.paramMap.get('id');
     this.cargado = true;
   }
@@ -75,14 +81,21 @@ export class ProfilePagePage implements AfterViewInit, OnInit {
   }
 
   gotomain() {
-    this.router.navigate(['home']);
+    this.router.navigate(['/home']);
   }
   gotoedit() {
-    this.router.navigate(['edituser', this.uid]);
+    this.router.navigate(['/edituser', this.uid]);
   }
   create() {
     this.router.navigate(['create']);
   }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+        component: ModalPagePage,
+    });
+    return await modal.present();
+}
 
   gotowhatsapp(telf: string) {
     // console.log(telf);

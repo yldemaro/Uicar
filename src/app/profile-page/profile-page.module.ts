@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
+import { ModalPagePage } from '../modal-page/modal-page.page';
+
 import { ProfilePagePage } from './profile-page.page';
 
 const routes: Routes = [
@@ -21,6 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ProfilePagePage]
+  declarations: [ProfilePagePage , ModalPagePage ],
+  entryComponents: [ ModalPagePage  ]
 })
 export class ProfilePagePageModule {}

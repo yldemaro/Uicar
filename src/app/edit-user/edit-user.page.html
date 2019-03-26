@@ -23,8 +23,8 @@
             <ion-item id="rounded">
                 <ion-label style="color:grey;">Zona</ion-label>
                 <ion-select value="brown" okText="Hecho" cancelText="Cancelar" [(ngModel)]="zona">
-                    <ion-select-option *ngFor="let item of zones" style="color:grey;" [value]="item.DMUN50">
-                        {{ item.DMUN50 }}</ion-select-option>
+                    <ion-select-option *ngFor="let item of zones" style="color:grey;" [value]="item.nombre">
+                        {{ item.nombre }}</ion-select-option>
                 </ion-select>
             </ion-item>
         </ion-list>

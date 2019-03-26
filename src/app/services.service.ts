@@ -32,7 +32,7 @@ export class ServicesService {
     private rout: Router,
     private camera: Camera,
     private http: HttpClient
-  ) {}
+  ) { }
 
   cargarImagen(data) {
     this.camera.getPicture(this.galleryOptions).then((imagePath) => {

@@ -23,7 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-   declarations: [MainPage , ModalPagePage , ModalTablonPage],
-  entryComponents: [ ModalPagePage , ModalTablonPage ]
+   declarations: [MainPage  , ModalTablonPage],
+  entryComponents: [ ModalTablonPage ]
 })
 export class MainPageModule {}
