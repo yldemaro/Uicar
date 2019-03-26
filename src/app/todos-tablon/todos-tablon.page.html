@@ -1,0 +1,40 @@
+<ion-header no-border>
+    <ion-toolbar no-border>
+        <ion-buttons slot="start">
+            <ion-icon (click)="gotomain()" size="large" src="/assets/icons/left-arrow.svg" padding></ion-icon>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <h2 class="titulo">Tablon {{ this.zona }}</h2>
+
+
+    <div text-center>
+
+        <div text-center *ngIf="(tablondata)?.length === 0">
+            <h3>El tablón esta vacío</h3>
+            <p style="font-weight: bold;color:#3B455A">Haz un post y encuentra compañeros de viaje</p>
+        </div>
+        <ion-card *ngFor="let item of tablondata" (click)="gotoPerfil(item.uid)">
+            <ion-card-content style="min-height: 100px;border-radius: 100px!important">
+                <h3 class="post">{{ item.info }}</h3>
+
+                <ion-row>
+                    <ion-col size="9">
+                        <h4 style="text-align: left;color: #3B455A">{{ item.nombre }}</h4>
+                    </ion-col>
+                    <ion-col size="3">
+                        <h4>{{ item.fecha | date:'short' }}</h4>
+
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+
+
+
+
+</ion-content>

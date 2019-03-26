@@ -123,6 +123,9 @@ export class MainPage implements AfterViewInit, OnInit {
     gotoall() {
         this.router.navigate([`/todos-trayectos/${this.zona}`]);
     }
+    gotoalltablon() {
+        this.router.navigate([`/todos-tablon/${this.zona}`]);
+    }
     gotosearch() {
         this.router.navigate([`/search/`]);
     }
@@ -138,7 +141,7 @@ export class MainPage implements AfterViewInit, OnInit {
 
     async tablonload(id: string) {
 
-        await this.http.get(`http://uicar.openode.io/tablon/${id}/5`).subscribe((data: any) => {
+        await this.http.get(`http://uicar.openode.io/tablon/${id}/3`).subscribe((data: any) => {
 
             this.tablondata = data;
 
