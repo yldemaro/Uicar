@@ -16,7 +16,7 @@ export class EditUserPage implements OnInit, OnDestroy {
   zones: any;
   telefono: any;
   nombre: any;
-  zona:any;
+  zona: any;
   profiledata: any;
 
   url: any;
