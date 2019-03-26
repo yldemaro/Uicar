@@ -16,22 +16,22 @@ export class EditUserPage implements OnInit, OnDestroy {
   zones: any;
   telefono: any;
   nombre: any;
-  zona: any;
+  zona:any;
+  profiledata: any;
 
   url: any;
 
   constructor(public router: Router, public active: ActivatedRoute, private aut: AngularFireAuth
     , private http: HttpClient, private cargaImagen: ServicesService) {
-    console.log(this.cargaImagen.url);
 
-    if (this.cargaImagen.url === undefined) {
-      this.cargaImagen.url = '/assets/icons/user.svg';
-    }
+    this.uid = this.active.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
-    this.logueado();
-    this.cargaruid();
+    // this.logueado();
+    // this.cargaruid();
+
+    this.profileload();
     this.zonasload();
   }
 
@@ -54,6 +54,17 @@ export class EditUserPage implements OnInit, OnDestroy {
     this.router.navigate([`/profile/${this.uid}`]);
   }
 
+  async profileload() {
+
+    await this.http.get(`http://uicar.openode.io/users/` + this.uid + '/info').subscribe((data: any) => {
+      console.log(data);
+      this.cargaImagen.url = data[0].img;
+      this.nombre = data[0].nombre;
+      this.telefono = data[0].whatsapp;
+      this.zona = data[0].ubication;
+    });
+  }
+
   gotocreate() {
     this.router.navigate([`/create`]);
   }
@@ -64,10 +75,9 @@ export class EditUserPage implements OnInit, OnDestroy {
   }
 
   async zonasload() {
-    await this.http.get(`http://uicar.openode.io/zonas/`).subscribe((data: any) => {
-      this.zones = data;
+    this.http.get(`http://uicar.openode.io/zonas/`).subscribe((data2: any) => {
+      this.zones = data2;
     });
-
   }
 
   async makepost() {

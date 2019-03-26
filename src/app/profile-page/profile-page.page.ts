@@ -81,10 +81,10 @@ export class ProfilePagePage implements AfterViewInit, OnInit {
   }
 
   gotomain() {
-    this.router.navigate(['home']);
+    this.router.navigate(['/home']);
   }
   gotoedit() {
-    this.router.navigate(['edituser', this.uid]);
+    this.router.navigate(['/edituser', this.uid]);
   }
   create() {
     this.router.navigate(['create']);

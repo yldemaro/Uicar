@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // firebase
 import Config from './firebase';
@@ -17,12 +18,13 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ModalPagePage } from './modal-page/modal-page.page';
 
+
 //nativo
 import { Camera } from '@ionic-native/Camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [ ],
+  entryComponents: [],
   imports: [BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
@@ -30,6 +32,8 @@ import { Camera } from '@ionic-native/Camera/ngx';
     AngularFireAuthModule,
     HttpClientModule,
     HttpModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,

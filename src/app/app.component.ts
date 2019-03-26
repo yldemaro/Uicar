@@ -38,21 +38,34 @@ export class AppComponent {
   }
 
   logueado() {
-    this.aut.authState
-      .subscribe(
-        user => {
-          if (user) {
-            this.rout.navigate(['home']);
-          } else {
-            this.rout.navigate(['login']);
-          }
-        },
-        () => {
-          this.rout.navigate(['login']);
+    // this.aut.authState
+    //   .subscribe(
+    //     user => {
+    //       if (user) {
+    //         this.rout.navigate(['home']);
+    //       } else {
+    //         this.rout.navigate(['login']);
+    //       }
+    //     },
+    //     () => {
+    //       this.rout.navigate(['login']);
+    //     }
+    //   );
+    this.platform.ready().then(() => {
+      this.aut.user.subscribe(user => {
+        if (user) {
+          this.rout.navigate(['/home']);
+        } else {
+          this.rout.navigate(['/login']);
         }
-      );
+      }, err => {
+        this.rout.navigate(['/login']);
+      }, () => {
+        this.splashScreen.hide();
+      });
+      this.statusBar.styleDefault();
+    });
   }
-
 
 
 }

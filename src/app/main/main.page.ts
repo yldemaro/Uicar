@@ -123,9 +123,6 @@ export class MainPage implements AfterViewInit, OnInit {
     gotoall() {
         this.router.navigate([`/todos-trayectos/${this.zona}`]);
     }
-    gotoalltablon() {
-        this.router.navigate([`/todos-tablon/${this.zona}`]);
-    }
     gotosearch() {
         this.router.navigate([`/search/`]);
     }
@@ -136,7 +133,6 @@ export class MainPage implements AfterViewInit, OnInit {
             // console.log(data);
             this.profiledata = data;
         });
-        return this.profiledata;
     }
 
     async tablonload(id: string) {
@@ -146,7 +142,6 @@ export class MainPage implements AfterViewInit, OnInit {
             this.tablondata = data;
 
         });
-        return this.tablondata;
     }
 
     async trayectosload(id: string) {
@@ -154,7 +149,6 @@ export class MainPage implements AfterViewInit, OnInit {
             // console.log(data);
             this.trayectos = data;
         });
-        return this.trayectos;
     }
 
 
