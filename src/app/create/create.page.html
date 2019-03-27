@@ -12,7 +12,7 @@
     <div class="formulario">
         <ion-item id="rounded">
             <ion-label style="color:grey;">Inicio</ion-label>
-            <ion-select class="myselect" multiple="true" value="brown" okText="Hecho" cancelText="Cancelar" [(ngModel)]="inicio">
+            <ion-select class="myselect" value="brown" okText="Hecho" cancelText="Cancelar" [(ngModel)]="inicio">
                 <ion-select-option *ngFor="let item of zones" style="color:grey;" [value]="item.nombre">{{ item.nombre }}</ion-select-option>
             </ion-select>
         </ion-item>
