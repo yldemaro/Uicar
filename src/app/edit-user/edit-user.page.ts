@@ -24,6 +24,10 @@ export class EditUserPage implements OnInit, OnDestroy {
   constructor(public router: Router, public active: ActivatedRoute, private aut: AngularFireAuth
     , private http: HttpClient, private cargaImagen: ServicesService) {
 
+    if (this.cargaImagen.url === undefined) {
+      this.cargaImagen.url = '/assets/icons/user.svg';
+    }
+
     this.uid = this.active.snapshot.paramMap.get('id');
   }
 
