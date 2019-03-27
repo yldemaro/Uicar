@@ -86,6 +86,9 @@ export class ProfilePagePage implements AfterViewInit, OnInit {
   gotoedit() {
     this.router.navigate(['/edituser', this.uid]);
   }
+  gotoinfotrayecto(id: string) {
+    this.router.navigate(['/info-trayecto', id]);
+  }
   create() {
     this.router.navigate(['create']);
   }

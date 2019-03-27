@@ -123,6 +123,9 @@ export class MainPage implements AfterViewInit, OnInit {
     gotoall() {
         this.router.navigate([`/todos-trayectos/${this.zona}`]);
     }
+    gotoalltablon() {
+        this.router.navigate([`/todos-tablon/${this.zona}`]);
+    }
     gotosearch() {
         this.router.navigate([`/search/`]);
     }
