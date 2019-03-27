@@ -146,7 +146,7 @@ export class MainPage implements AfterViewInit, OnInit {
 
     async trayectosload(id: string) {
         await this.http.get(`http://uicar.openode.io/zonas/${id}/3`).subscribe((data: any) => {
-            // console.log(data);
+            console.log(data);
             this.trayectos = data;
         });
     }

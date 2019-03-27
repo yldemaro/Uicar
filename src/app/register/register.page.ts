@@ -29,8 +29,11 @@ export class RegisterPage {
       this.rout.navigate(['/register']);
     } else {
       try {
-        const res = this.afr.auth.createUserWithEmailAndPassword(email, password);
-        this.rout.navigate(['/home']);
+        await this.afr.auth.createUserWithEmailAndPassword(email, password).then(data => {
+          console.log(data);
+          this.rout.navigate(['/home']);
+        });
+
       } catch (error) {
         console.log(error);
       }
