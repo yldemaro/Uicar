@@ -8,9 +8,12 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
+    <allow-navigation href="*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
+    <allow-navigation href="*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
@@ -42,6 +45,7 @@
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
+        <allow-navigation href="*" />
         <allow-intent href="itms-apps:*" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />

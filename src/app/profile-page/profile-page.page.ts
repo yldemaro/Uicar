@@ -103,7 +103,7 @@ export class ProfilePagePage implements AfterViewInit, OnInit {
   gotowhatsapp(telf: string) {
     // console.log(telf);
     const newurl = 'https://api.whatsapp.com/send?phone=' + telf;
-    window.open(newurl, '_system', '_blank');
+    window.open(newurl, '_system');
 
   }
 }
