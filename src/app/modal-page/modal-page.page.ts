@@ -41,7 +41,7 @@ export class ModalPagePage implements OnInit {
   }
   gotopage(url: string) {
     console.log(url);
-    window.open(url, '_system');
+    window.open(url, '_system', '_blank');
 
   }
 
