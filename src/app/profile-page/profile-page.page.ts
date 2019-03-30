@@ -3,12 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ServicesService } from '../services.service';
+import { ModalController } from '@ionic/angular';
+import { ModalPagePage } from '../modal-page/modal-page.page';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
-import {ModalController, Platform} from '@ionic/angular';
-import {ModalPagePage} from '../modal-page/modal-page.page';
-import {ModalTablonPage} from '../modal-tablon/modal-tablon.page';
-import {Geolocation} from '@ionic-native/geolocation/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.page.html',
@@ -25,8 +24,13 @@ export class ProfilePagePage implements AfterViewInit, OnInit {
   cargado: boolean;
 
 
-  constructor(private http: HttpClient, private aut: AngularFireAuth,
-    private router: Router, public active: ActivatedRoute, private auth: ServicesService , public modalController: ModalController) {
+  constructor(private http: HttpClient,
+    private aut: AngularFireAuth,
+    private router: Router,
+    private iab: InAppBrowser,
+    public active: ActivatedRoute,
+    private auth: ServicesService,
+    public modalController: ModalController) {
     this.uid = this.active.snapshot.paramMap.get('id');
     this.cargado = true;
   }
@@ -95,15 +99,13 @@ export class ProfilePagePage implements AfterViewInit, OnInit {
 
   async presentModal() {
     const modal = await this.modalController.create({
-        component: ModalPagePage,
+      component: ModalPagePage,
     });
     return await modal.present();
-}
+  }
 
   gotowhatsapp(telf: string) {
     // console.log(telf);
-    const newurl = 'https://api.whatsapp.com/send?phone=' + telf;
-    window.open(newurl, '_system', '_blank');
-
+    this.iab.create(`https://api.whatsapp.com/send?phone=${telf}`);
   }
 }

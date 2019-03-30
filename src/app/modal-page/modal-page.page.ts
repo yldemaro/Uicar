@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ModalPagePage implements OnInit {
 
   links: any;
   constructor(public modalcontroler: ModalController, private http: HttpClient
-    , private aut: AngularFireAuth, private router: Router) {
+    , private aut: AngularFireAuth, private router: Router, private iab: InAppBrowser) {
 
   }
 
@@ -39,10 +40,10 @@ export class ModalPagePage implements OnInit {
       this.links = data;
     });
   }
+  
   gotopage(url: string) {
     console.log(url);
-    window.open(url, '_system', '_blank');
-
+    this.iab.create(`${url}`);
   }
 
 }
