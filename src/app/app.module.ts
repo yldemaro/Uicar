@@ -21,6 +21,7 @@ import { ModalPagePage } from './modal-page/modal-page.page';
 
 //nativo
 import { Camera } from '@ionic-native/Camera/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { Camera } from '@ionic-native/Camera/ngx';
   providers: [
     StatusBar,
     Camera,
+    InAppBrowser,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
