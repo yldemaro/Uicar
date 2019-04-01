@@ -40,10 +40,9 @@ export class ModalPagePage implements OnInit {
       this.links = data;
     });
   }
-  
   gotopage(url: string) {
     console.log(url);
-    this.iab.create(`${url}`);
+    this.iab.create(`${url}` ,  '_system', '_blank');
   }
 
 }
