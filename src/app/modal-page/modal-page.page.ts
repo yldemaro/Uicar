@@ -43,7 +43,7 @@ export class ModalPagePage implements OnInit {
   
   gotopage(url: string) {
     console.log(url);
-    this.iab.create(`${url}`);
+    this.iab.create(`${url}`, '_blank');
   }
 
 }
