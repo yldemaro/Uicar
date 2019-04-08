@@ -110,7 +110,6 @@ export class EditUserPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('se va');
   }
 
   cargarImagen() {

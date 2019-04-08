@@ -41,7 +41,7 @@ export class ServicesService {
       return this.cargarImagenesFirebase(imageBlob);
     }).then((_uploadSnapshot: any) => {
     }, (_error) => {
-      alert('No se ha eleguido ninguna imageb');
+      alert('No se ha eleguido ninguna imagen');
     });
   }
 
