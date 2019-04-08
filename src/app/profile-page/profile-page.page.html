@@ -60,7 +60,7 @@
                 <h3 style="color: #E45454;" class="notrayecto">Aun no tiene ningun trayecto!</h3>
             </div>
 
-            <ion-card *ngFor="let item of profiletrayectos">
+            <ion-card mode="ios" *ngFor="let item of profiletrayectos">
                 <ion-card-content (click)="gotoinfotrayecto(item.id)" style="height: 110px;border-radius: 100px!important">
                     <ion-row class="carta">
                         <ion-col size="5">

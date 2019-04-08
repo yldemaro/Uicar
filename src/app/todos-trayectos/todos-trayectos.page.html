@@ -33,7 +33,7 @@
         <div text-center *ngIf="(trayectos)?.length != 0">
 
             <br>
-            <ion-card style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos" (click)="gotoinfoTrayecto(item.id)">
+            <ion-card mode="ios" style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos" (click)="gotoinfoTrayecto(item.id)">
                 <ion-card-content style="height: 110px;border-radius: 100px !important">
                     <ion-row class="carta">
                         <ion-col size="5">
@@ -59,9 +59,9 @@
                         <ion-col style="font-size: 12px;text-align: center" size="3">
                             {{ item.asientos }} <br>Asientos
                         </ion-col>
-                        <ion-col size="2">
+                        <ion-col style="margin-bottom: 10px;" size="2">
                             <br>
-                            <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;" src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
+                            <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 10px!important;" src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
                         </ion-col>
 
                     </ion-row>

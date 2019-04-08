@@ -14,6 +14,8 @@ export class LoginPage {
 
   username: string;
   password: string;
+  passwordType = 'password';
+  passwordIcon = 'eye-off';
 
   constructor(public afs: AngularFireAuth,
     public rout: Router,
@@ -32,10 +34,16 @@ export class LoginPage {
       });
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
-        this.errorContrasena();
-      } else if (error.code === 'auth/user-not-found') {
-        this.errorUsuario();
+        this.error('Contraseña incorrecta');
+      }  if (error.code === 'auth/user-not-found') {
+        this.error('Ese gmail no pertenece a ningún usuario');
       }
+      if ( error.code === 'auth/argument-error') {
+        this.error('Revisa los campos');
+       }
+       if ( error.code === 'auth/invalid-email') {
+        this.error('Email es invalido');
+       }
     }
   }
 
@@ -66,9 +74,9 @@ export class LoginPage {
     await alert.present();
   }
 
-  async errorContrasena() {
+  async error(mensaje: string) {
     const alert = await this.alertController.create({
-      message: 'Lo siento su contraseña es incorrecta',
+      message: mensaje,
       buttons: ['OK']
     });
 
@@ -78,7 +86,6 @@ export class LoginPage {
   async errorUsuario() {
     const alert = await this.alertController.create({
       message: 'Lo siento su email o usuario no se encuentra registrado',
-      buttons: ['OK']
     });
 
     await alert.present();
@@ -88,5 +95,16 @@ export class LoginPage {
   async presentLoading(loading) {
     return await loading.present();
   }
+
+  // contraseña
+
+  hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+}
+moveFocus(nextElement) {
+  nextElement.setFocus();
+}
+
 
 }

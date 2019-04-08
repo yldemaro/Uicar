@@ -85,7 +85,7 @@ export class EditUserPage implements OnInit, OnDestroy {
   }
 
   async makepost() {
-    const telf = '34' + this.telefono;
+    const telf =  this.telefono;
     const { nombre, zona, url } = this;
     console.log(nombre, telf, zona);
 

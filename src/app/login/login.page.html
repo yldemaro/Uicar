@@ -11,24 +11,25 @@
     <ion-list margin-top margin-bottom>
 
         <ion-item>
-            <ion-input type="text" placeholder="Email" [(ngModel)]="username"></ion-input>
+            <ion-input type="text" tabindex="20" (keyup.enter)="moveFocus(b)" placeholder="Email" [(ngModel)]="username" required></ion-input>
 
         </ion-item>
 
         <ion-item>
-            <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
-            <ion-icon name="eye" item-right></ion-icon>
+            <ion-input [type]="passwordType" #b placeholder="Constraseña" [(ngModel)]="password" required></ion-input>
+            <ion-icon (click)='hideShowPassword()' name="eye" item-right></ion-icon>
         </ion-item>
 
     </ion-list>
 
     <ion-button margin-bottom fill="solid" expand="block" color="primary" (click)="login()">Entrar</ion-button>
     <br><br>
-    <div margin-top margin-bottom (click)="loginGmail()" class="tc flex jusify-center align-center flex-wrap w-100">
+    <p class="register-text" (click)="goRegister()">No tienes cuenta ?<a> Registrate</a> </p><br>
+    <!-- <div margin-top margin-bottom (click)="loginGmail()" class="tc flex jusify-center align-center flex-wrap w-100">
         <div class="w-100 tc flex align-center justify-center">
             <button class="buttone google flex justify-center align-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" class="flex self-center pr2"  > Inicia con google</button>
         </div>
-    </div>
+    </div> -->
     <br>
-    <p class="register-text" (click)="goRegister()">No tienes cuenta ?<a> Registrate</a> </p>
+
 </ion-content>

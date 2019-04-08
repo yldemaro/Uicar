@@ -86,7 +86,7 @@ export class CreatePage implements AfterViewInit {
       fecha: fecha
     }).subscribe((response) => {
       console.log(response);
-      this.router.navigate([`home`]);
+      this.router.navigate([`profile/${this.uid}`]);
     });
 
   }

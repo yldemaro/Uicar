@@ -15,6 +15,9 @@ export class RegisterPage {
   password: string;
   cpassword: string;
 
+  passwordType = 'password';
+  passwordIcon = 'eye-off';
+
   constructor(public afr: AngularFireAuth,
     public rout: Router,
     public alertController: AlertController,
@@ -35,7 +38,17 @@ export class RegisterPage {
         });
 
       } catch (error) {
-        console.log(error);
+        if (error.code === 'auth/wrong-password') {
+          this.error('Contraseña incorrecta');
+        }  if (error.code === 'auth/user-not-found') {
+          this.error('Ese gmail no pertenece a ningún usuario');
+        }
+        if ( error.code === 'auth/argument-error') {
+          this.error('Revisa los campos');
+         }
+         if ( error.code === 'auth/invalid-email') {
+          this.error('Email es invalido');
+         }
       }
     }
   }
@@ -78,4 +91,18 @@ export class RegisterPage {
   async presentLoading(loading) {
     return await loading.present();
   }
+
+  async error(mensaje: string) {
+    const alert = await this.alertController.create({
+      message: mensaje,
+      buttons: ['OK']
+    });
+  }
+  hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+}
+moveFocus(nextElement) {
+  nextElement.setFocus();
+}
 }
