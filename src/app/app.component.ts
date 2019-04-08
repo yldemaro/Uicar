@@ -3,9 +3,8 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { ToastController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,13 +14,15 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
   uid: any;
+  intro: boolean;
 
   constructor(
     private statusBar: StatusBar,
     private platform: Platform,
     private splashScreen: SplashScreen,
     public aut: AngularFireAuth,
-    private rout: Router
+    private rout: Router,
+
   ) {
     this.initializeApp();
     // let status bar overlay webview
@@ -38,19 +39,6 @@ export class AppComponent {
   }
 
   logueado() {
-    // this.aut.authState
-    //   .subscribe(
-    //     user => {
-    //       if (user) {
-    //         this.rout.navigate(['home']);
-    //       } else {
-    //         this.rout.navigate(['login']);
-    //       }
-    //     },
-    //     () => {
-    //       this.rout.navigate(['login']);
-    //     }
-    //   );
     this.platform.ready().then(() => {
       this.aut.user.subscribe(user => {
         if (user) {
@@ -66,6 +54,5 @@ export class AppComponent {
       this.statusBar.styleDefault();
     });
   }
-
 
 }

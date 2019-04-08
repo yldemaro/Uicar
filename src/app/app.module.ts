@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // firebase
 import Config from './firebase';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ModalPagePage } from './modal-page/modal-page.page';
@@ -29,6 +30,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
   imports: [BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    AngularFirestoreModule,
     AngularFireModule.initializeApp(Config),
     AngularFireAuthModule,
     HttpClientModule,
