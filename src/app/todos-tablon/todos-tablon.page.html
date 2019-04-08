@@ -16,7 +16,7 @@
             <h3>El tablón esta vacío</h3>
             <p style="font-weight: bold;color:#3B455A">Haz un post y encuentra compañeros de viaje</p>
         </div>
-        <ion-card *ngFor="let item of tablondata" (click)="gotoPerfil(item.uid)">
+        <ion-card mode="ios" *ngFor="let item of tablondata" (click)="gotoPerfil(item.uid)">
             <ion-card-content style="min-height: 100px;border-radius: 100px!important">
                 <h3 class="post">{{ item.info }}</h3>
 
@@ -32,9 +32,4 @@
             </ion-card-content>
         </ion-card>
     </div>
-
-
-
-
-
 </ion-content>

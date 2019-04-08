@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-import { Router } from '@angular/router';
+import { LoadingController, ToastController } from '@ionic/angular';
 import * as firebase from 'firebase';
-
 import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
-
 
 declare var window;
 
@@ -16,7 +13,7 @@ declare var window;
 export class ServicesService {
   private CARPETA_IMAGENES = 'img';
   url: any;
-
+  slide: any;
 
   private galleryOptions: CameraOptions = {
     quality: 50,
@@ -29,9 +26,10 @@ export class ServicesService {
   };
   constructor(
     public aut: AngularFireAuth,
-    private rout: Router,
     private camera: Camera,
-    private http: HttpClient
+    private http: HttpClient,
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController
   ) { }
 
   cargarImagen(data) {
@@ -69,7 +67,17 @@ export class ServicesService {
     });
   }
 
-  cargarImagenesFirebase(imgBlob: any) {
+  async cargarImagenesFirebase(imgBlob: any) {
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Espere por favor.....'
+    });
+    const toast = await this.toastCtrl.create({
+      message: 'Imagen Cargada Correctamente',
+      duration: 3000
+    });
+
+    this.presentLoading(loading);
 
     const randomNumber = Math.floor(Math.random() * 256);
     console.log('Random number : ' + randomNumber);
@@ -99,10 +107,16 @@ export class ServicesService {
             console.log('File available at', downloadURL);
             const url = downloadURL;
             this.url = `${url}`;
+            loading.dismiss();
+            toast.present();
             return this.url;
           });
         });
     });
+  }
+
+  async presentLoading(loading) {
+    return await loading.present();
   }
 
 
