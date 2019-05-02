@@ -14,3 +14,21 @@
 .gm-fullscreen-control {
     display: none;
 }
+
+@media screen and (min-width: 768px){
+
+    body{
+        background: url('assets/background.png') no-repeat !important;
+    }
+
+    .ion-page{
+       width: 90%;
+       margin: auto;
+    }
+
+    .centrar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

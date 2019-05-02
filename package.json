@@ -1,6 +1,6 @@
 {
   "name": "Uicar",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "author": "Davic Barrero",
   "homepage": "http://ionicframework.com/",
   "scripts": {
@@ -34,7 +34,7 @@
     "angularfire2": "^5.1.1",
     "cordova-android": "7.1.4",
     "cordova-ios": "4.5.5",
-    "cordova-plugin-advanced-http": "^2.0.6",
+    "cordova-plugin-advanced-http": "^2.0.9",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-file": "^6.0.1",

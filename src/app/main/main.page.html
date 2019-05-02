@@ -25,60 +25,69 @@
     <div margin-bottom #map class="map" id="map" style="position: relative"></div>
 
     <div padding margin-bottom margin-top>
+        <div class="trayectos">
 
-        <div text-center *ngIf="(trayectos)?.length === 0">
-            <h3>Los trayectos estan vacíos</h3>
-            <p>Aun no hay trayectos en esta zona</p>
-        </div>
+            <div text-center *ngIf="(trayectos)?.length === 0">
+                <h3>Los trayectos estan vacíos</h3>
+                <p>Aun no hay trayectos en esta zona</p>
+            </div>
 
-        <div text-center *ngIf="(trayectos)?.length != 0">
-            <h2 margin-top margin-bottom> Trayectos desde {{ zona }} </h2>
+            <div text-center *ngIf="(trayectos)?.length != 0">
+                <h2 margin-top margin-bottom> Trayectos desde {{ zona }} </h2>
+                <br>
+                <ion-card mode="ios" style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos"
+                    (click)="gotoinfoTrayecto(item.id)">
+                    <ion-card-content style="height: 110px;border-radius: 100px !important">
+                        <ion-row class="carta">
+                            <ion-col  class="centrar" size="5">
+                                {{ item.inicio }}
+                            </ion-col>
+                            <ion-col  class="centrar" size="2">
+                                <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg">
+                                </ion-icon>
+                            </ion-col>
+                            <ion-col  class="centrar" size="5">
+                                {{ item.destino }}
+                            </ion-col>
+
+                        </ion-row>
+
+                        <ion-row class="cartadesc">
+                            <ion-col class="centrar" size="5">
+                                {{ item.hora }} Salida
+                            </ion-col>
+                            <ion-col size="2">
+
+                            </ion-col>
+                            <ion-col class="centrar" style="font-size: 12px;text-align: center" size="3">
+                                {{ item.asientos }} <br>Asientos
+                            </ion-col>
+                            <ion-col class="centrar" size="2">
+                                <br>
+                                <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;"
+                                    src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
+                            </ion-col>
+
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </div>
             <br>
-            <ion-card mode="ios" style="border-bottom:1px solid #ccc;" *ngFor="let item of trayectos" (click)="gotoinfoTrayecto(item.id)">
-                <ion-card-content style="height: 110px;border-radius: 100px !important">
-                    <ion-row class="carta">
-                        <ion-col size="5">
-                            {{ item.inicio }}
-                        </ion-col>
-                        <ion-col size="2">
-                            <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg">
-                            </ion-icon>
-                        </ion-col>
-                        <ion-col size="5">
-                            {{ item.destino }}
-                        </ion-col>
-
-                    </ion-row>
-
-                    <ion-row class="cartadesc">
-                        <ion-col size="5">
-                            {{ item.hora }} Salida
-                        </ion-col>
-                        <ion-col size="2">
-
-                        </ion-col>
-                        <ion-col style="font-size: 12px;text-align: center" size="3">
-                            {{ item.asientos }} <br>Asientos
-                        </ion-col>
-                        <ion-col size="2">
-                            <br>
-                            <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;" src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
-                        </ion-col>
-
-                    </ion-row>
-                </ion-card-content>
-            </ion-card>
+            <p *ngIf="(trayectos)?.length != 0"
+                style="font-weight: bold;color:#3B455A;text-decoration: underline;text-align: center"
+                (click)="gotoall()">
+                Cargar más trayectos</p>
+            <br>
         </div>
-        <br>
-        <p *ngIf="(trayectos)?.length != 0" style="font-weight: bold;color:#3B455A;text-decoration: underline;text-align: center" (click)="gotoall()">Cargar más trayectos</p>
 
-        <br>
+        <div>
+
+        </div>
+
 
 
         <ion-row margin-bottom margin-top>
-            <ion-col size="10">
-
-            </ion-col>
+            <ion-col size="10"></ion-col>
             <ion-col size="2">
                 <ion-buttons *ngFor="let item of profiledata" (click)="presentModal2(item.ubication)">
                     <ion-icon slot="end" size="large" src="/assets/icons/add.svg"></ion-icon>
@@ -100,10 +109,10 @@
                     <h3 class="post">{{ item.info }}</h3>
 
                     <ion-row>
-                        <ion-col size="9">
+                        <ion-col class="centrar" size="9">
                             <h4 style="text-align: left;color: #3B455A">{{ item.nombre }}</h4>
                         </ion-col>
-                        <ion-col size="3">
+                        <ion-col class="centrar" size="3">
                             <h4>{{ item.fecha | date:'short' }}</h4>
 
                         </ion-col>
@@ -113,7 +122,9 @@
         </div>
 
         <br>
-        <p *ngIf="(trayectos)?.length != 0" style="font-weight: bold;color:#3B455A;text-decoration: underline;text-align: center" (click)="gotoalltablon()">Cargar todo el tablón</p>
+        <p *ngIf="(trayectos)?.length != 0"
+            style="font-weight: bold;color:#3B455A;text-decoration: underline;text-align: center"
+            (click)="gotoalltablon()">Cargar todo el tablón</p>
 
         <br>
 

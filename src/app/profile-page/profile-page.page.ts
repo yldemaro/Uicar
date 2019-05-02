@@ -24,7 +24,8 @@ export class ProfilePagePage implements AfterViewInit, OnInit {
   cargado: boolean;
 
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private aut: AngularFireAuth,
     private router: Router,
     private iab: InAppBrowser,

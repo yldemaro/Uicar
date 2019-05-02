@@ -37,14 +37,14 @@
 
             <ion-grid>
                 <ion-row>
-                    <ion-col size="4">
+                    <ion-col class="centrar" size="4">
                         <ion-icon (click)="gotowhatsapp(item.whatsapp)" style=" font-size: 22px;" src="assets/icons/whatsap.svg"></ion-icon>
                     </ion-col>
-                    <ion-col class="ubication" size="6">
+                    <ion-col class="centrar ubication" size="6">
                         <ion-icon style=" font-size: 25px;" src="assets/icons/placeholder.svg"></ion-icon>
                         {{ item.ubication }}
                     </ion-col>
-                    <ion-col size="2">
+                    <ion-col class="centrar" size="2">
                         <ion-icon *ngIf="id===uid" style=" font-size: 29px;margin-top:-15px;" src="/assets/icons/settings-work-tool (1).svg" padding (click)="gotoedit()">
                         </ion-icon>
                     </ion-col>
@@ -63,30 +63,30 @@
             <ion-card mode="ios" *ngFor="let item of profiletrayectos">
                 <ion-card-content (click)="gotoinfotrayecto(item.id)" style="height: 110px;border-radius: 100px!important">
                     <ion-row class="carta">
-                        <ion-col size="5">
+                        <ion-col class="centrar" size="5">
                             {{ item.inicio }}
                         </ion-col>
-                        <ion-col size="2">
+                        <ion-col class="centrar" size="2">
                             <ion-icon style=" font-size: 25px;color: #3B455A" src="assets/icons/right-arrow.svg">
                             </ion-icon>
                         </ion-col>
-                        <ion-col size="5">
+                        <ion-col class="centrar" size="5">
                             {{ item.destino }}
                         </ion-col>
 
                     </ion-row>
 
                     <ion-row class="cartadesc">
-                        <ion-col size="5">
+                        <ion-col class="centrar" size="5">
                             {{ item.hora }} Salida
                         </ion-col>
                         <ion-col size="2">
 
                         </ion-col>
-                        <ion-col style="font-size: 12px;text-align: center" size="3">
+                        <ion-col class="centrar" style="font-size: 12px;text-align: center" size="3">
                             {{ item.asientos }} <br>Asientos
                         </ion-col>
-                        <ion-col size="2">
+                        <ion-col class="centrar" size="2">
                             <br>
                             <ion-icon style=" font-size: 45px;color: #3B455A;margin-bottom: 0%;" src='assets/icons/{{ item.vehiculo }}.svg'></ion-icon>
                         </ion-col>

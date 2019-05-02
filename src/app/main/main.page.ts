@@ -1,12 +1,12 @@
-import {Component, AfterViewInit, OnInit, DoCheck, OnChanges} from '@angular/core';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {Router, ActivatedRoute} from '@angular/router';
-import {ServicesService} from '../services.service';
-import {HttpClient} from '@angular/common/http';
-import {ModalController, Platform} from '@ionic/angular';
-import {ModalPagePage} from '../modal-page/modal-page.page';
-import {ModalTablonPage} from '../modal-tablon/modal-tablon.page';
-import {Geolocation} from '@ionic-native/geolocation/ngx';
+import { Component, AfterViewInit, OnInit, DoCheck, OnChanges } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ServicesService } from '../services.service';
+import { HttpClient } from '@angular/common/http';
+import { ModalController, Platform } from '@ionic/angular';
+import { ModalPagePage } from '../modal-page/modal-page.page';
+import { ModalTablonPage } from '../modal-tablon/modal-tablon.page';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 
@@ -20,7 +20,7 @@ declare var google;
 })
 export class MainPage implements AfterViewInit, OnInit {
     uid: string;
-    profiledata = [{nombre: 'Usuario', ubication: 'Madrid', whatsapp: ''}];
+    profiledata = [{ nombre: 'Usuario', ubication: 'Madrid', whatsapp: '' }];
     tablondata = [];
     data = [];
     trayectos = [];
@@ -41,8 +41,8 @@ export class MainPage implements AfterViewInit, OnInit {
 
 
     constructor(private aut: AngularFireAuth, public modalController: ModalController,
-                private router: Router, public _servicie: ServicesService, private http: HttpClient,
-                private geolocation: Geolocation, private statusBar: StatusBar) {}
+        private router: Router, public _servicie: ServicesService, private http: HttpClient,
+        private geolocation: Geolocation, private statusBar: StatusBar) { }
 
     ngOnInit() {
         this.logueado();
@@ -103,7 +103,7 @@ export class MainPage implements AfterViewInit, OnInit {
     async presentModal2() {
         const modal2 = await this.modalController.create({
             component: ModalTablonPage,
-            componentProps: {zona: this.zona, nombre: this.nombre}
+            componentProps: { zona: this.zona, nombre: this.nombre }
         });
         return await modal2.present();
     }
@@ -134,7 +134,7 @@ export class MainPage implements AfterViewInit, OnInit {
     async profileload(id: string) {
         await this.http.get(`http://uicar.openode.io/users/${id}/info`).subscribe((data: any) => {
             // console.log(data);
-            this.profiledata = data;
+                this.profiledata = data;
         });
     }
 
@@ -162,7 +162,7 @@ export class MainPage implements AfterViewInit, OnInit {
         this.directionsDisplay = new google.maps.DirectionsRenderer();
         this.map = new google.maps.Map(document.getElementById('map'), {
             zoom: 11,
-            center: {lat: this.lat, lng: this.lng},
+            center: { lat: this.lat, lng: this.lng },
             mapTypeId: 'terrain'
         });
         this.directionsDisplay.setMap(this.map);
