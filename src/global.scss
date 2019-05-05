@@ -31,4 +31,23 @@
         justify-content: center;
         align-items: center;
     }
+
+    .contenedorPrincipal{
+        display: inline-flex;
+        width: 100%;
+    }
+
+    .trayectos{
+        display: block;
+        width: 45%;
+    }
+    .addTablon{
+        display: block;
+        width: 10%;
+    }
+
+    .tablon{
+        display: block;
+        width: 45%;
+    }
 }
